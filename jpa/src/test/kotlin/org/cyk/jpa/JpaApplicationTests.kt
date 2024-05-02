@@ -1,7 +1,7 @@
 package org.cyk.jpa
 
 import org.cyk.jpa.model.Userinfo
-import org.cyk.jpa.repo.UserRepo
+import org.cyk.jpa.repo.UserRepoJpa
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 import javax.annotation.Resource
@@ -10,7 +10,7 @@ import javax.annotation.Resource
 class JpaApplicationTests {
 
     @Resource
-    private lateinit var userRepo: UserRepo
+    private lateinit var userRepoJpa: UserRepoJpa
 
     @Test
     fun test() {
@@ -18,8 +18,8 @@ class JpaApplicationTests {
             username = "cyk3",
             age = 21,
         )
-        userRepo.save(obj)
-        val result = userRepo.findAll()
+        userRepoJpa.save(obj)
+        val result = userRepoJpa.findAll()
         result.forEach(::println)
     }
 

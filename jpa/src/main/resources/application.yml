@@ -11,5 +11,5 @@ spring:
     database: mysql
     show-sql: true # 显示 sql 语句
     hibernate:
-      ddl-auto: create # //自动创建表，并且退出时不删除表
+      ddl-auto: update
 #    open-in-view: false
