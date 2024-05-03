@@ -15,7 +15,7 @@ class JpaApplicationTests {
     @Test
     fun test() {
         val obj = Userinfo(
-            username = "cyk3",
+            username = "cyk2",
             age = 21,
         )
         userRepoJpa.save(obj)
