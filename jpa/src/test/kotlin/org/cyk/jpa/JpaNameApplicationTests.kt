@@ -1,7 +1,5 @@
 package org.cyk.jpa
 
-import org.cyk.jpa.model.Userinfo
-import org.cyk.jpa.repo.UserRepoJpa
 import org.cyk.jpa.repo.UserRepoName
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
