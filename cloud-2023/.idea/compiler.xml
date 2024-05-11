@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="kt-user" />
+        <module name="kt-feign" />
+        <module name="kt-commons" />
+        <module name="kt-gateway" />
+        <module name="kt-product" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="cloud-2023" options="" />
+      <module name="kt-commons" options="-parameters" />
+      <module name="kt-feign" options="-parameters" />
+      <module name="kt-gateway" options="-parameters" />
+      <module name="kt-product" options="-parameters" />
+      <module name="kt-user" options="-parameters" />
+    </option>
+  </component>
+</project>

@@ -4,13 +4,12 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.elasticsearch.annotations.Document
 import org.springframework.data.elasticsearch.annotations.Field
 import org.springframework.data.elasticsearch.annotations.FieldType
-import java.net.ContentHandler
-import kotlin.reflect.typeOf
-
 
 @Document(indexName = "album_info", )
 data class AlbumInfoDo (
-
+    /**
+     * @Id: 表示文档中的主键，并且会在保存在 ElasticSearch 数据结构中 {"id": "", "userId": "", "title": ""}
+     */
     @Id
     @Field(type = FieldType.Keyword)
     val id: Long? = null,
@@ -27,7 +26,6 @@ data class AlbumInfoDo (
     var title: String,
     @Field(type = FieldType.Text, analyzer = "ik_smart")
     var content: String,
-
 )
 
 

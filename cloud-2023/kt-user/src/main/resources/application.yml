@@ -1,0 +1,10 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: kt-user
+  cloud:
+    nacos:
+      discovery:
+        server-addr: env-base:8848
