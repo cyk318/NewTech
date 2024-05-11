@@ -24,9 +24,9 @@ data class AlbumInfoDo (
     @Field(name = "user_id", type = FieldType.Long)
     val userId: Long,
     @Field(type = FieldType.Text, analyzer = "ik_max_word")
-    val title: String,
+    var title: String,
     @Field(type = FieldType.Text, analyzer = "ik_smart")
-    val content: String,
+    var content: String,
 
 )
 
