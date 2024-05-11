@@ -1,0 +1,6 @@
+
+spring:
+  application:
+    name: es
+  elasticsearch:
+    uris: env-base:9200
