@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: kt-product
+    name: product
   cloud:
     nacos:
       discovery:
