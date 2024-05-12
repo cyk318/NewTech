@@ -8,3 +8,6 @@ spring:
     nacos:
       discovery:
         server-addr: env-base:8848
+    sentinel:
+      transport:
+        dashboard: env:base:8858
