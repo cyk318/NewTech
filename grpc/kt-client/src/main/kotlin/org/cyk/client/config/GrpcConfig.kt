@@ -1,6 +1,5 @@
 package org.cyk.client.config
 
-import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder
 import org.cyk.HelloServiceGrpc
 import org.cyk.HelloServiceGrpc.HelloServiceBlockingStub
