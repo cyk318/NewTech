@@ -5,8 +5,12 @@ spring:
   application:
     name: boot-client
 
-grpc:
-  client:
-    grpc-server: # 自定义服务名
-      address: 'static://127.0.0.1:9000' # 调用 gRPC 的地址
-      negotiation-type: plaintext # 明文传输
+#grpc:
+#  client:
+#    grpc-server: # 自定义服务名
+#      address: 'static://127.0.0.1:9000' # 调用 gRPC 的地址
+#      negotiation-type: plaintext # 明文传输
+
+grpc-client:
+  host: '127.0.0.1'
+  port: 9000
