@@ -10,4 +10,6 @@ spring:
         server-addr: env-base:8848
     sentinel:
       transport:
-        dashboard: env:base:8858
+        dashboard: env-base:8858 # 控制台
+        port: 8719 # 默认8719端口，如果被占用会自动从8719开始依次+1，直到找到未被占用的端口
+                   # 8719端口是应用和Sentinel控制台交互的端口
