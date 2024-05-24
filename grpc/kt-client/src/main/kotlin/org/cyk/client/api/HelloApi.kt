@@ -1,7 +1,6 @@
 package org.cyk.client.api
 
 import net.devh.boot.grpc.client.inject.GrpcClient
-import org.cyk.HelloProto
 import org.cyk.HelloProto.HelloRequest
 import org.cyk.HelloServiceGrpc.HelloServiceBlockingStub
 import org.springframework.web.bind.annotation.GetMapping
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/hello")
 class HelloApi {
 
-    @GrpcClient("client")
+    @GrpcClient("grpc-server")
     private lateinit var stub: HelloServiceBlockingStub
 
     @GetMapping
