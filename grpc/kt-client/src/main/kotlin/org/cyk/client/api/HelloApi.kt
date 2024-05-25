@@ -21,5 +21,4 @@ class HelloApi(
         return response.result
     }
 
-
 }

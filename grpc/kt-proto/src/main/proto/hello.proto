@@ -1,7 +1,22 @@
+// 设定使用的 proto 版本
 syntax = "proto3";
 
+/**
+  java_multiple_files = true 表示 Protobuf 编译器会为每个定义的消息类型生成一个单独的 Java 文件，而不是都放在一个文件中
+  java_multiple_files = false 表示 Protobuf 编译器会把所有的消息类型生成的 Java 代码都放在一个文件中
+ */
 option java_multiple_files = false;
+
+/**
+  指定 protobuf 生成的类，放在哪个包中
+ */
 option java_package = "org.cyk";
+
+/**
+  指定 protobuf 生成的外部类的名字
+  外部类是用来管理内部类的
+  内部类才是开发中使用的
+ */
 option java_outer_classname = "HelloProto";
 
 service HelloService {
@@ -9,7 +24,7 @@ service HelloService {
 }
 
 message HelloRequest {
-  string msg = 1;
+   string msg = 1;
 }
 
 message HelloResponse {

@@ -1,7 +1,5 @@
 package org.cyk.server
 
-import net.devh.boot.grpc.common.autoconfigure.GrpcCommonCodecAutoConfiguration
-import net.devh.boot.grpc.common.autoconfigure.GrpcCommonTraceAutoConfiguration
 import net.devh.boot.grpc.server.autoconfigure.*
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
