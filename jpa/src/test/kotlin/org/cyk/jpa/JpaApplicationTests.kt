@@ -15,8 +15,8 @@ class JpaApplicationTests {
     @Test
     fun test() {
         val obj = Userinfo(
-            username = "cyk3",
-            age = 21,
+            username = "龙洋静",
+            age = 20,
         )
         userRepoJpa.save(obj)
         val result = userRepoJpa.findAll()
