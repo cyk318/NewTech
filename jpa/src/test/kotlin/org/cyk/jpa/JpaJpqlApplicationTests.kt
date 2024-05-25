@@ -5,7 +5,7 @@ import org.cyk.jpa.repo.UserRepoJpql
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.domain.PageRequest
-import javax.annotation.Resource
+import jakarta.annotation.Resource
 
 @SpringBootTest
 class JpaJpqlApplicationTests {

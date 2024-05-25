@@ -3,7 +3,7 @@ package org.cyk.jpa
 import org.cyk.jpa.repo.UserRepoSql
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
-import javax.annotation.Resource
+import jakarta.annotation.Resource
 
 @SpringBootTest
 class JpaSqlApplicationTests {

@@ -1,0 +1,27 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: duitang
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://env-base:3306/duitang?characterEncoding=utf8&useSSL=false
+    username: root
+    password: 1111
+  data:
+    mongodb:
+      uri: mongodb://env-base:27017/duitang
+      field-naming-strategy: org.springframework.data.mapping.model.SnakeCaseFieldNamingStrategy # 自动转驼峰
+    redis:
+      host: env-base
+      port: 6379
+  jpa:
+    database: mysql
+    show-sql: true # 显示 sql 语句（项目上线后记得关闭）
+    hibernate:
+      ddl-auto: update
+    open-in-view: false # 一般来讲，建议关闭
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect

@@ -7,8 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
 import org.springframework.data.jpa.domain.Specification
-import javax.annotation.Resource
-import javax.persistence.criteria.Predicate
+import jakarta.annotation.Resource
+import jakarta.persistence.criteria.Predicate
 
 @SpringBootTest
 class JpaSpeApplicationTests {
