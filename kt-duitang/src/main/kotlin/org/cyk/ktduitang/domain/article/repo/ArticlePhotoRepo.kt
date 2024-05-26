@@ -1,21 +1,21 @@
-package org.cyk.ktduitang.repo.article
+package org.cyk.ktduitang.domain.article.repo
 
 import jakarta.persistence.*
 import org.cyk.ktduitang.infra.template.DatabaseTemplate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
-import org.springframework.stereotype.Service
+import org.springframework.stereotype.Component
 
-@Entity
 @Table(name = "article_photo")
 @EntityListeners(AuditingEntityListener::class)
 class ArticlePhotoDo (
     @Id
-    val id: Long,
-    val photoPath: String,
-    val sort: Long,
+    val id: Long, // 文章 id
+    val aid: Long,
+    val photoPath: String, // 图片路径
+    val sort: Long, // 图片展示顺序(由小到大)
 )
 
-@Service
+@Component
 class ArticlePhotoRepo(
     val databaseTemplate: DatabaseTemplate<ArticleInfoDo, Long>
 ) {
