@@ -7,7 +7,7 @@ import java.io.Serializable
  *
  * @author cyk
  */
-data class ApiResp<T> (
+data class ApiResp<T> private constructor (
     var code: Int,
     var msg: String,
     var data: T? = null
