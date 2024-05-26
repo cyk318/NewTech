@@ -8,10 +8,10 @@ import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.stereotype.Repository
 
 @Repository
-class UserRepoImpl (
+class UserinfoRepoImpl (
     val databaseTemplate: DatabaseTemplate<UserIdentDo>,
     val mongoTemplate: MongoTemplate,
-): UserRepo {
+): UserinfoRepo {
 
     override fun queryUserIdentByUsername(username: String): UserIdent? {
         val q = LambdaQueryWrapper<UserIdentDo>()
