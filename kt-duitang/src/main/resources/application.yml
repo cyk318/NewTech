@@ -16,9 +16,14 @@ spring:
     redis:
       host: env-base
       port: 6379
-  jpa:
-    show-sql: true # 显示 sql 语句（项目上线后记得关闭）
-    hibernate:
-      ddl-auto: update
-    open-in-view: false # 一般来讲，建议关闭
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印 sql
+    map-underscore-to-camel-case: true # 是否开启下划线和驼峰的映射
+    cache-enabled: false # 是否开启二级缓存
+  global-config:
+    db-config:
+      id-type: auto # 默认雪花算法，另外还有 auto(自增id) assign_uuid(uuid)
+      update-strategy: not_null # 更新策略: 只更新非空字段
 

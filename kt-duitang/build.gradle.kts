@@ -23,13 +23,18 @@ repositories {
     mavenCentral()
 }
 
+val dv = mapOf(
+    "mybatisPlusVersion" to "3.5.5"
+)
+
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("com.baomidou:mybatis-plus-spring-boot3-starter:${dv["mybatisPlusVersion"]}")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
     runtimeOnly("com.mysql:mysql-connector-j")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")

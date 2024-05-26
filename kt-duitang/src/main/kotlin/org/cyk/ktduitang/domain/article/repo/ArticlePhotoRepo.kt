@@ -1,14 +1,12 @@
 package org.cyk.ktduitang.domain.article.repo
 
-import jakarta.persistence.*
-import org.cyk.ktduitang.infra.template.DatabaseTemplate
-import org.springframework.data.jpa.domain.support.AuditingEntityListener
+import com.baomidou.mybatisplus.annotation.TableId
+import com.baomidou.mybatisplus.annotation.TableName
 import org.springframework.stereotype.Component
 
-@Table(name = "article_photo")
-@EntityListeners(AuditingEntityListener::class)
+@TableName(value = "article_photo")
 class ArticlePhotoDo (
-    @Id
+    @TableId
     val id: Long, // 文章 id
     val aid: Long,
     val photoPath: String, // 图片路径

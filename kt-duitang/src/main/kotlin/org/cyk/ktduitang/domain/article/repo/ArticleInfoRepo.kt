@@ -1,15 +1,13 @@
 package org.cyk.ktduitang.domain.article.repo
 
-import jakarta.persistence.*
-import org.cyk.ktduitang.infra.template.DatabaseTemplate
+import com.baomidou.mybatisplus.annotation.TableId
+import com.baomidou.mybatisplus.annotation.TableName
 import org.springframework.stereotype.Component
-import org.springframework.stereotype.Service
 import java.util.*
 
-@Table(name = "article_info")
+@TableName(value = "article_info")
 data class ArticleInfoDo (
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @TableId
     val id: Long? = null, // 文章 id
     val uId: Long, // 用户 id
     val content: String, // 文章内容

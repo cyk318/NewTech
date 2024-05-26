@@ -1,13 +1,13 @@
 package org.cyk.ktduitang.domain.article.repo
 
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import com.baomidou.mybatisplus.annotation.TableId
+import com.baomidou.mybatisplus.annotation.TableName
 import org.springframework.stereotype.Component
 import java.util.Date
 
-@Table(name = "article_tag")
+@TableName(value = "article_tag")
 data class ArticleTag (
-    @Id
+    @TableId
     val id: Long,
     val aId: Long,
     val uId: Long,
