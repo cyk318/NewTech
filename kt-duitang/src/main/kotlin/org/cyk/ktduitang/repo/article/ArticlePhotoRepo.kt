@@ -1,6 +1,7 @@
 package org.cyk.ktduitang.repo.article
 
 import jakarta.persistence.*
+import org.cyk.ktduitang.infra.template.DatabaseTemplate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import org.springframework.stereotype.Service
 
@@ -15,5 +16,8 @@ class ArticlePhotoDo (
 )
 
 @Service
-class ArticlePhotoRepo {
+class ArticlePhotoRepo(
+    val databaseTemplate: DatabaseTemplate<ArticleInfoDo, Long>
+) {
+
 }

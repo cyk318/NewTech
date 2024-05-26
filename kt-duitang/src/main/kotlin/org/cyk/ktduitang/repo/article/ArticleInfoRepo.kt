@@ -1,6 +1,7 @@
 package org.cyk.ktduitang.repo.article
 
 import jakarta.persistence.*
+import org.cyk.ktduitang.infra.template.DatabaseTemplate
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
@@ -24,7 +25,9 @@ data class ArticleInfoDo (
 )
 
 @Service
-class ArticleInfoRepo {
+class ArticleInfoRepo(
+    val databaseTemplate: DatabaseTemplate<ArticleInfoDo, Long>
+) {
 
 
 
