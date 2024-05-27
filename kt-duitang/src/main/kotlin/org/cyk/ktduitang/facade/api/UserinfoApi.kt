@@ -1,8 +1,10 @@
-package org.cyk.ktduitang.facade
+package org.cyk.ktduitang.facade.api
 
 import jakarta.validation.Valid
-import jakarta.validation.constraints.NotBlank
-import org.cyk.ktduitang.application.UserAuthService
+import org.cyk.ktduitang.application.UserinfoService
+import org.cyk.ktduitang.facade.model.LoginDto
+import org.cyk.ktduitang.facade.model.UserRegDto
+import org.cyk.ktduitang.facade.model.UserinfoVo
 import org.cyk.ktduitang.infra.config.ApiResp
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -12,23 +14,25 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/user/auth/")
 class UserAuthApi(
-    val userAuthService: UserAuthService
+    private val userInfoService: UserinfoService
 ) {
 
     @PostMapping("/login")
     fun login(
         @RequestBody @Valid dto: LoginDto
     ): ApiResp<String> {
-        val result = userAuthService.login(dto)
+        val result = userInfoService.login(dto)
         return ApiResp.ok(result)
+    }
+
+    @PostMapping("/reg")
+    fun reg(
+        @RequestBody @Valid dto: UserRegDto,
+    ): ApiResp<Int> {
+        userInfoService.reg(dto)
+        return ApiResp.ok(1)
     }
 
 }
 
-data class LoginDto (
-    @field:NotBlank
-    val username: String,
-    @field:NotBlank
-    val password: String,
-)
 
