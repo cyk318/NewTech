@@ -1,6 +1,6 @@
 package org.cyk.ktduitang.infra.config
 
-import org.hibernate.exception.ConstraintViolationException
+import jakarta.validation.ConstraintViolationException
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.MissingRequestValueException

@@ -24,11 +24,13 @@ repositories {
 }
 
 val dv = mapOf(
-    "mybatisPlusVersion" to "3.5.5"
+    "mybatisPlusVersion" to "3.5.5",
+    "jwtVersion" to "3.4.0",
 )
 
 dependencies {
     implementation("com.baomidou:mybatis-plus-spring-boot3-starter:${dv["mybatisPlusVersion"]}")
+    implementation("com.auth0:java-jwt:${dv["jwtVersion"]}")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.springframework.boot:spring-boot-starter-web")
