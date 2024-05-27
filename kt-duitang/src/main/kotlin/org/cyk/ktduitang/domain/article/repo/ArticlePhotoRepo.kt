@@ -1,13 +1,8 @@
 package org.cyk.ktduitang.domain.article.repo
 
-import com.baomidou.mybatisplus.annotation.TableId
-import com.baomidou.mybatisplus.annotation.TableName
-import org.cyk.ktduitang.infra.template.DatabaseTemplate
 import org.springframework.stereotype.Component
 
-@TableName(value = "article_photo")
 class ArticlePhotoDo (
-    @TableId
     val id: Long, // 文章 id
     val aid: Long,
     val photoPath: String, // 图片路径
@@ -16,7 +11,6 @@ class ArticlePhotoDo (
 
 @Component
 class ArticlePhotoRepo(
-    val databaseTemplate: DatabaseTemplate<ArticleInfoDo>
 ) {
 
 }

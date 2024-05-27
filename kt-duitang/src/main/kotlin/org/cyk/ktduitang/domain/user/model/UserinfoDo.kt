@@ -1,14 +1,12 @@
 package org.cyk.ktduitang.domain.user.model
 
-import com.baomidou.mybatisplus.annotation.TableId
-import com.baomidou.mybatisplus.annotation.TableName
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import java.util.*
 
-@TableName(value = "user_ident")
+@Document("user_ident")
 data class UserIdentDo (
-    @TableId
+    @Id
     val id: Long? = null, // 用户 id
     val username: String, // 用户名
     val password: String, // 密码

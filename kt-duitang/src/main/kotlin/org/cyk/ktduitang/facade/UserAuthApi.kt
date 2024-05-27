@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank
 import org.cyk.ktduitang.application.UserAuthService
 import org.cyk.ktduitang.infra.config.ApiResp
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -16,7 +17,7 @@ class UserAuthApi(
 
     @PostMapping("/login")
     fun login(
-        @Valid dto: LoginDto
+        @RequestBody @Valid dto: LoginDto
     ): ApiResp<String> {
         val result = userAuthService.login(dto)
         return ApiResp.ok(result)

@@ -4,11 +4,12 @@ server:
 spring:
   application:
     name: duitang
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://env-base:3306/duitang
-    username: root
-    password: 1111
+#  这里先不用 mysql 了
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://env-base:3306/duitang
+#    username: root
+#    password: 1111
   data:
     mongodb:
       uri: mongodb://env-base:27017/duitang
@@ -18,6 +19,7 @@ spring:
       port: 6379
 
 mybatis-plus:
+  type-aliases-package: org/cyk/ktduitang/domain
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印 sql
     map-underscore-to-camel-case: true # 是否开启下划线和驼峰的映射

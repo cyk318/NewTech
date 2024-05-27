@@ -24,12 +24,10 @@ repositories {
 }
 
 val dv = mapOf(
-    "mybatisPlusVersion" to "3.5.5",
     "jwtVersion" to "3.4.0",
 )
 
 dependencies {
-    implementation("com.baomidou:mybatis-plus-spring-boot3-starter:${dv["mybatisPlusVersion"]}")
     implementation("com.auth0:java-jwt:${dv["jwtVersion"]}")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
@@ -37,7 +35,6 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    runtimeOnly("com.mysql:mysql-connector-j")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }

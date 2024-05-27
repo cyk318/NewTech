@@ -7,6 +7,11 @@ spring:
     username: root
     password: 1111
     driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    mongodb:
+      uri: mongodb://env-base:27017/test
+      field-naming-strategy: org.springframework.data.mapping.model.SnakeCaseFieldNamingStrategy # 自动转驼峰
+      auto-index-creation: true # 默认为 false，即不会自动创建索引(@Indexed 无效)，
   jpa:
     show-sql: true # 显示 sql 语句
     hibernate:
