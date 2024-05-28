@@ -26,7 +26,7 @@ class UserinfoServiceImpl(
         //1.校验用户注册信息是否合法
         regDomain.chValid(dto)
         //2.创建新用户信息
-        regDomain.createNewUser(dto)
+        regDomain.createNewUserAndEncrypt(dto)
     }
 
 }

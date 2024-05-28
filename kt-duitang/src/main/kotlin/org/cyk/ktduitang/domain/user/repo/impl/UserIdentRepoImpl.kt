@@ -4,6 +4,7 @@ import org.cyk.ktduitang.domain.user.model.UserIdent
 import org.cyk.ktduitang.domain.user.model.UserIdentDo
 import org.cyk.ktduitang.domain.user.repo.UserIdentRepo
 import org.cyk.ktduitang.facade.model.RegDto
+import org.cyk.ktduitang.infra.tools.PasswordUtils
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query

@@ -5,6 +5,7 @@ import org.cyk.ktduitang.domain.user.repo.UserIdentRepo
 import org.cyk.ktduitang.facade.model.RegDto
 import org.cyk.ktduitang.infra.config.ApiStatus
 import org.cyk.ktduitang.infra.config.AppException
+import org.cyk.ktduitang.infra.tools.PasswordUtils
 import org.springframework.stereotype.Component
 
 
@@ -21,8 +22,10 @@ class RegDomain(
         }
     }
 
-    fun createNewUser(dto: RegDto) {
-        //1.保存用户信息
+    fun createNewUserAndEncrypt(dto: RegDto) {
+        //1.密码加密
+        dto.password = PasswordUtils.encrypt(dto.password)
+        //2.保存用户信息
         saveUserinfoHandler.handler(dto)
     }
 

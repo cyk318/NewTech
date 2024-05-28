@@ -17,5 +17,5 @@ data class RegDto (
     val username: String,
     @field:NotBlank
     @field:Length(min = 4, max = 20)
-    val password: String,
+    var password: String,
 )
