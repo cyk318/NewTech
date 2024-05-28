@@ -4,7 +4,7 @@ import org.cyk.ktduitang.application.UserinfoService
 import org.cyk.ktduitang.domain.user.service.LoginDomain
 import org.cyk.ktduitang.domain.user.service.RegDomain
 import org.cyk.ktduitang.facade.model.LoginDto
-import org.cyk.ktduitang.facade.model.UserRegDto
+import org.cyk.ktduitang.facade.model.RegDto
 import org.springframework.stereotype.Service
 
 @Service
@@ -22,7 +22,7 @@ class UserinfoServiceImpl(
         return token
     }
 
-    override fun reg(dto: UserRegDto) {
+    override fun reg(dto: RegDto) {
         //1.校验用户注册信息是否合法
         regDomain.chValid(dto)
         //2.创建新用户信息

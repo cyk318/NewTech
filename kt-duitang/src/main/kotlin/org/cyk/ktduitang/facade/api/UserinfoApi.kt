@@ -3,8 +3,7 @@ package org.cyk.ktduitang.facade.api
 import jakarta.validation.Valid
 import org.cyk.ktduitang.application.UserinfoService
 import org.cyk.ktduitang.facade.model.LoginDto
-import org.cyk.ktduitang.facade.model.UserRegDto
-import org.cyk.ktduitang.facade.model.UserinfoVo
+import org.cyk.ktduitang.facade.model.RegDto
 import org.cyk.ktduitang.infra.config.ApiResp
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/user/auth/")
+@RequestMapping("/user/info/")
 class UserAuthApi(
     private val userInfoService: UserinfoService
 ) {
@@ -27,7 +26,7 @@ class UserAuthApi(
 
     @PostMapping("/reg")
     fun reg(
-        @RequestBody @Valid dto: UserRegDto,
+        @RequestBody @Valid dto: RegDto,
     ): ApiResp<Int> {
         userInfoService.reg(dto)
         return ApiResp.ok(1)

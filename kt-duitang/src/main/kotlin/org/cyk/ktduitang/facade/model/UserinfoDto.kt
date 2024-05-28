@@ -10,7 +10,8 @@ data class LoginDto (
     val password: String,
 )
 
-data class UserRegDto (
+data class RegDto (
+    var id: String? = null,
     @field:NotBlank
     @field:Length(min = 1, max = 20)
     val username: String,
