@@ -12,6 +12,8 @@ object JwtUtils {
 
     //自定义密钥
     private const val SIGN = "Y*(GY*G^&*%69g*()&"
+    //过期时间(默认 1 天过期)
+    private const val EXPIRE_TIME = 1
 
     /**
      * 生成 Token
@@ -19,9 +21,10 @@ object JwtUtils {
      * @return 返回 Token
      */
     fun createToken(map: Map<String, String>): String {
-        //1.设置过期时间(默认 1 天过期)
-        val instance = Calendar.getInstance()
-        instance.add(Calendar.DATE, 1)
+        //1.设置过期时间
+        val expireTime = Calendar.getInstance().apply {
+                this.add(Calendar.DATE, EXPIRE_TIME)
+            }.time
 
         //2.创建 jwt builder，添加自定义的载荷数据
         val builder = JWT.create()
@@ -30,7 +33,7 @@ object JwtUtils {
         }
 
         //3.生成 Token
-        return builder.withExpiresAt(instance.time) //过期时间
+        return builder.withExpiresAt(expireTime) //过期时间
             .sign(Algorithm.HMAC256(SIGN)) // sign
     }
 

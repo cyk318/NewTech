@@ -8,7 +8,6 @@ import org.cyk.ktduitang.infra.config.AppException
 import org.cyk.ktduitang.infra.tools.PasswordUtils
 import org.springframework.stereotype.Component
 
-
 @Component
 class RegDomain(
     private val userIdentRepo: UserIdentRepo,
