@@ -1,0 +1,18 @@
+server:
+  port: 9000
+
+
+spring:
+  application:
+    name: prometheus
+
+# actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+      base-path: /console
+  endpoint:
+    prometheus:
+      enabled: true
