@@ -21,6 +21,12 @@ class JpaApplicationTests {
         userRepoJpa.save(obj)
         val result = userRepoJpa.findAll()
         result.forEach(::println)
+
+    }
+
+    @Test
+    fun test2() {
+        
     }
 
 }
