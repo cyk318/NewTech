@@ -8,11 +8,13 @@ spring:
 
 # actuator
 management:
+  server:
+    port: 9001 # actuator ????
   endpoints:
     web:
       exposure:
-        include: health,info,metrics,prometheus
-      base-path: /console
+        include: health,info,prometheus
+      base-path: /console # ???? /console/prometheus ???????
   endpoint:
     prometheus:
       enabled: true
