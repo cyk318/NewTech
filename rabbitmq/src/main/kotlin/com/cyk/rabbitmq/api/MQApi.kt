@@ -32,4 +32,12 @@ class MQApi(
         return "ok"
     }
 
+    @RequestMapping("/qos")
+    fun qos(): String {
+        for (i in 1..20) {
+            rabbitTemplate.convertAndSend(MQConst.QOS_EXCHANGE, MQConst.QOS_BINDING_KEY, "qos msg $i")
+        }
+        return "ok"
+    }
+
 }
