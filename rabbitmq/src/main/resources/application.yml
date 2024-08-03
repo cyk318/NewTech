@@ -1,0 +1,11 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: rabbitmq
+  rabbitmq:
+    host: env-base
+    port: 5672
+    username: root
+    password: 1111
