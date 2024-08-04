@@ -10,4 +10,10 @@ object MQConst {
     const val QOS_EXCHANGE = "qos.exchange"
     const val QOS_BINDING_KEY = "qos.binding.key"
 
+    // 确认应答
+    const val ACK_QUEUE = "ack_queue"
+    const val ACK_EXCHANGE = "ack_exchange"
+    const val ACK_BINDING = "ack_binding"
+
+
 }
