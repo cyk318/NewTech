@@ -15,10 +15,16 @@ class AckListener {
         message: Message,
         channel: Channel,
     ) {
-        println("接收到消息: ${String(message.body, Charset.forName("UTF-8"))}, ${message.messageProperties.deliveryTag}")
-        //业务处理...
-        val a = 1 / 0
-        println("业务逻辑处理完成")
+        val deliveryTag = message.messageProperties.deliveryTag
+        try {
+            println("接收到消息: ${String(message.body, Charset.forName("UTF-8"))}, $deliveryTag")
+            //业务处理...
+            val a = 1 / 0
+            println("业务逻辑处理完成")
+            channel.basicAck(deliveryTag, false)
+        } catch (e: Exception) {
+            channel.basicNack(deliveryTag, false, true)
+        }
     }
 
 }

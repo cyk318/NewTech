@@ -11,4 +11,4 @@ spring:
     password: 1111
     listener:
       simple:
-        acknowledge-mode: auto
+        acknowledge-mode: manual
