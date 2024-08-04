@@ -15,5 +15,9 @@ object MQConst {
     const val ACK_EXCHANGE = "ack_exchange"
     const val ACK_BINDING = "ack_binding"
 
+    // 发送方确认
+    const val CONFIRM_QUEUE = "confirm.queue"
+    const val CONFIRM_EXCHANGE = "confirm.exchange"
+    const val CONFIRM_BINDING = "confirm.binding"
 
 }

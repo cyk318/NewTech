@@ -1,6 +1,7 @@
 package com.cyk.rabbitmq.api
 
 import com.cyk.rabbitmq.constants.MQConst
+import org.springframework.amqp.rabbit.connection.CorrelationData
 import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -8,12 +9,13 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/mq")
 class MQApi(
-   val rabbitTemplate: RabbitTemplate
+    val confirmRabbitTemplate: RabbitTemplate
 ) {
 
-    @RequestMapping("/ack")
-    fun ack(): String {
-        rabbitTemplate.convertAndSend(MQConst.ACK_EXCHANGE, MQConst.ACK_BINDING, "ack msg 1")
+    @RequestMapping("/confirm")
+    fun confirm(): String {
+        val data = CorrelationData("1")
+        confirmRabbitTemplate.convertAndSend(MQConst.CONFIRM_EXCHANGE, MQConst.CONFIRM_BINDING + "1", "confirm msg 1", data)
         return "ok"
     }
 

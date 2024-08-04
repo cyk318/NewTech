@@ -9,6 +9,7 @@ spring:
     port: 5672
     username: root
     password: 1111
-    listener:
-      simple:
-        acknowledge-mode: manual
+    publisher-confirm-type: correlated # 开启发送方确认机制
+#    listener:
+#      simple:
+#        acknowledge-mode: manual
