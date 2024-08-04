@@ -5,7 +5,9 @@ import org.springframework.amqp.core.Binding
 import org.springframework.amqp.core.BindingBuilder
 import org.springframework.amqp.core.DirectExchange
 import org.springframework.amqp.core.Exchange
+import org.springframework.amqp.core.ExchangeBuilder
 import org.springframework.amqp.core.Queue
+import org.springframework.amqp.core.QueueBuilder
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -54,5 +56,19 @@ class MQConfig {
         .to(exchange)
         .with(MQConst.CONFIRM_BINDING)
 
+    @Bean("durableExchange")
+    fun durableExchange(): DirectExchange = ExchangeBuilder
+        .directExchange(MQConst.DURABLE_EXCHANGE)
+        .durable(true) //持久化
+        .build()
+    @Bean("durableQueue")
+    fun durableQueue(): Queue = QueueBuilder
+        .durable(MQConst.DURABLE_QUEUE) //持久化
+        .build()
+    @Bean("durableBinding")
+    fun durableBinding(): Binding = BindingBuilder
+        .bind(durableQueue())
+        .to(durableExchange())
+        .with(MQConst.DURABLE_BINDING)
 }
 

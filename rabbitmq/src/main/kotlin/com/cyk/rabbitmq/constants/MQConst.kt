@@ -20,4 +20,9 @@ object MQConst {
     const val CONFIRM_EXCHANGE = "confirm.exchange"
     const val CONFIRM_BINDING = "confirm.binding"
 
+    // 持久化
+    const val DURABLE_EXCHANGE = "durable.exchange"
+    const val DURABLE_QUEUE = "durable.queue"
+    const val DURABLE_BINDING = "durable.binding"
+
 }
