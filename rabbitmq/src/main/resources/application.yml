@@ -9,7 +9,10 @@ spring:
     port: 5672
     username: root
     password: 1111
-    publisher-confirm-type: correlated # 开启发送方确认机制
-#    listener:
-#      simple:
-#        acknowledge-mode: manual
+    listener:
+      simple:
+        acknowledge-mode: auto # 开启重试机制，这里必须是 auto，否则不生效！
+        retry:
+          enabled: true # 开启消费者失败重试
+          initial-interval: 5000ms # 失败等待时常
+          max-attempts: 5 # 最大重试次数(包括第一次消费)

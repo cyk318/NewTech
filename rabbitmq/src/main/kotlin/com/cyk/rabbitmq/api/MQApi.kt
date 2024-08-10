@@ -1,8 +1,6 @@
 package com.cyk.rabbitmq.api
 
 import com.cyk.rabbitmq.constants.MQConst
-import org.springframework.amqp.core.MessageBuilder
-import org.springframework.amqp.core.MessageDeliveryMode
 import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -13,14 +11,14 @@ class MQApi(
     private val rabbitTemplate: RabbitTemplate
 ) {
 
-    @RequestMapping("/durable")
-    fun durable(): String {
-        val msg = MessageBuilder
-            .withBody("durable msg 1".toByteArray())
-            .setDeliveryMode(MessageDeliveryMode.PERSISTENT)
-            .build()
-        //不用上述这样设计消息也可以，因为 RabbitMQ 消息默认就是持久化的
-        rabbitTemplate.convertAndSend(MQConst.DURABLE_EXCHANGE,MQConst.DURABLE_BINDING ,msg)
+    @RequestMapping("ttl")
+    fun ttl(): String {
+        rabbitTemplate.convertAndSend(MQConst.TTL_EXCHANGE, MQConst.TTL_BINDING, "ttl msg 1") { msg ->
+            //给 msg 配置一些属性
+            val expire = 20 * 1000
+            msg.messageProperties.expiration = expire.toString()
+            return@convertAndSend msg
+        }
         return "ok"
     }
 

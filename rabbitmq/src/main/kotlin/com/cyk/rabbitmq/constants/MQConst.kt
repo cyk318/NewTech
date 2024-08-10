@@ -25,4 +25,9 @@ object MQConst {
     const val DURABLE_QUEUE = "durable.queue"
     const val DURABLE_BINDING = "durable.binding"
 
+    //ttl
+    const val TTL_QUEUE = "ttl.queue"
+    const val TTL_EXCHANGE = "ttl.exchange"
+    const val TTL_BINDING = "ttl.binding"
+
 }

@@ -15,7 +15,7 @@ class MQ4Api(
     @RequestMapping("/confirm")
     fun confirm(): String {
         val data = CorrelationData("1")
-        confirmRabbitTemplate.convertAndSend(MQConst.CONFIRM_EXCHANGE, MQConst.CONFIRM_BINDING + "1", "confirm msg 1", data)
+        confirmRabbitTemplate.convertAndSend(MQConst.CONFIRM_EXCHANGE, MQConst.CONFIRM_BINDING, "confirm msg 1", data)
         return "ok"
     }
 

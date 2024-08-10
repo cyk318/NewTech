@@ -70,5 +70,29 @@ class MQConfig {
         .bind(durableQueue())
         .to(durableExchange())
         .with(MQConst.DURABLE_BINDING)
+
+    @Bean
+    fun ttlExchange(): DirectExchange = ExchangeBuilder
+        .directExchange(MQConst.TTL_EXCHANGE)
+        .build()
+
+    /**
+     * 消息设置过期时间有很多中方式，本质都是给扩展参数中添加 x-message-ttl
+     */
+    @Bean
+    fun ttlQueue(): Queue = QueueBuilder
+        .durable(MQConst.TTL_QUEUE)
+        //.withArgument("x-message-ttl", 10 * 1000) //设置过期时间本质都是它
+        .ttl(10 * 1000) // 10s 过期
+        .build()
+    @Bean
+    fun ttlBinding(
+        @Qualifier("ttlExchange") exchange: DirectExchange,
+        @Qualifier("ttlQueue") queue: Queue,
+    ): Binding = BindingBuilder
+        .bind(queue)
+        .to(exchange)
+        .with(MQConst.TTL_BINDING)
+
 }
 
