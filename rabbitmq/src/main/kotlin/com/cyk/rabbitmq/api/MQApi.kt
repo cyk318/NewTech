@@ -22,4 +22,10 @@ class MQApi(
         return "ok"
     }
 
+    @RequestMapping("dl")
+    fun dl(): String {
+        rabbitTemplate.convertAndSend(MQConst.NORMAL_EXCHANGE, MQConst.NORMAL_BINDING, "dl msg 1")
+        return "ok"
+    }
+
 }

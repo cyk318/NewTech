@@ -30,4 +30,14 @@ object MQConst {
     const val TTL_EXCHANGE = "ttl.exchange"
     const val TTL_BINDING = "ttl.binding"
 
+    //normal
+    const val NORMAL_EXCHANGE = "normal.exchange"
+    const val NORMAL_QUEUE = "normal.queue"
+    const val NORMAL_BINDING = "normal.binding"
+
+    //dl
+    const val DL_EXCHANGE = "dl.exchange"
+    const val DL_QUEUE = "dl.queue"
+    const val DL_BINDING = "dl.binding"
+
 }

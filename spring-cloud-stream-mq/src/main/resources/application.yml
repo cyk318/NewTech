@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: mq
+  rabbitmq:
+    host: env-base
+    port: 5672
+    username: root
+    password: 1111
+  cloud:
+    stream:
+      bindings: # bindings 表示消息通道绑定配置
+        generate-out-0: # generate-out-0 是一个输出通信的名称，表示这是生成消息的第一个通道(还可能由类似 generate-out-1 的其他通道)
+          destination: partitioned.destination # 消息发送的名称为 "partitioned.destination" 的目的地(目的地在这里就是 mq 消息队列).
+          producer: # 生产者配置
+            # partitioned: true
+            partition-key-expression: headers['partitionKey'] # 表示消息应该发送到哪个分区(这个跟代码里配置的 header 有关)
+            partition-count: 2 # 表示有两个分区. 生产者会根据 "partition-key-expression" 计算的结果，将消息分配到这两个分区之一
+            required-groups: # 配置消费组
+              - myGroup
