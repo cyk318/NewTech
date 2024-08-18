@@ -7,7 +7,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener
 import org.springframework.stereotype.Component
 import java.nio.charset.Charset
 
-@Component
+//@Component
 class AckListener {
 
     @RabbitListener(queues = [MQConst.ACK_QUEUE])

@@ -40,4 +40,6 @@ object MQConst {
     const val DL_QUEUE = "dl.queue"
     const val DL_BINDING = "dl.binding"
 
+    const val QUORUM_QUEUE = "quorum.queue"
+
 }

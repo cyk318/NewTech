@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration
 /**
  * Ps：注意，队列被修改属性之后需要在MQ 管理平台删除重名队列，然后等程序启动，自动重新创建
  */
-@Configuration
+//@Configuration
 class DLConfig {
 
     @Bean
