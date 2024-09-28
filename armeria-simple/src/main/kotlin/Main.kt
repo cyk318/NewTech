@@ -1,4 +1,3 @@
-import org.slf4j.LoggerFactory
 import com.linecorp.armeria.server.Server
 import com.linecorp.armeria.server.grpc.GrpcService
 import service.BlogService
@@ -17,11 +16,11 @@ object ArmeriaGrpcBean {
 }
 
 fun main(args: Array<String>) {
-    val log = LoggerFactory.getLogger("MainLogger")
+//    val log = LoggerFactory.getLogger("MainLogger")
 
     val server = ArmeriaGrpcBean.newServer(9000)
     server.closeOnJvmShutdown().thenRun {
-        log.info("Server is closed ...")
+//        log.info("Server is closed ...")
     }
 
     server.start().join()
