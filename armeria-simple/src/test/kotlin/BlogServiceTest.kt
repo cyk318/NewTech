@@ -4,7 +4,6 @@ import example.armeria.blog.grpc.BlogServiceGrpc.BlogServiceBlockingStub
 import example.armeria.blog.grpc.CreateBlogPostRequest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.slf4j.LoggerFactory
 
 class BlogServiceTest {
 
@@ -29,10 +28,11 @@ class BlogServiceTest {
             .setContent("今天天气真不错~")
             .build()
 
-        println("================= req =================")
+        println("================= req send ... =================")
         val resp = stub.createBlogPost(req)
-        println(resp)
-        println("================= resp =================")
+        println(resp.title)
+        println(resp.content)
+        println("================= resp received ... =================")
     }
 
 }
