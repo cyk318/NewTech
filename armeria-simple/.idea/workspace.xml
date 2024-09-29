@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2808405d-c834-40a7-8bda-e368ddad9416" name="Changes" comment="create ok">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="2808405d-c834-40a7-8bda-e368ddad9416" name="Changes" comment="query ok">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/service/BlogService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/service/BlogServiceGrpcFacade.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/service/BlogServiceGrpcFacade.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/service/BlogServiceGrpcFacade.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/proto/blog.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/proto/blog.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/BlogServiceTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/BlogServiceGrpcFacadeTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/BlogServiceGrpcFacadeTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/BlogServiceGrpcFacadeTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +80,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Gradle.BlogServiceGrpcFacadeTest.queryBlogByIdTest">
+  <component name="RunManager" selected="Gradle.BlogServiceGrpcFacadeTest.updateBlogTest">
     <configuration name="BlogServiceGrpcFacadeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -155,7 +153,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="BlogServiceTest.createBlogTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="BlogServiceGrpcFacadeTest.queryBlogByIdsTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -168,7 +166,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;BlogServiceTest.createBlogTest&quot;" />
+            <option value="&quot;BlogServiceGrpcFacadeTest.queryBlogByIdsTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -179,35 +177,37 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="armeria-simple [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="BlogServiceGrpcFacadeTest.updateBlogTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="clean" />
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;BlogServiceGrpcFacadeTest.updateBlogTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
+      <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.BlogServiceGrpcFacadeTest.queryBlogByIdTest" />
+        <item itemvalue="Gradle.BlogServiceGrpcFacadeTest.updateBlogTest" />
+        <item itemvalue="Gradle.BlogServiceGrpcFacadeTest.queryBlogByIdsTest" />
         <item itemvalue="Gradle.BlogServiceGrpcFacadeTest" />
+        <item itemvalue="Gradle.BlogServiceGrpcFacadeTest.queryBlogByIdTest" />
         <item itemvalue="Gradle.BlogServiceGrpcFacadeTest.createBlogTest" />
-        <item itemvalue="Gradle.armeria-simple [clean]" />
-        <item itemvalue="Gradle.BlogServiceTest.createBlogTest" />
       </list>
     </recent_temporary>
   </component>
@@ -220,7 +220,7 @@
       <option name="presentableId" value="Default" />
       <updated>1710938688859</updated>
       <workItem from="1727528555626" duration="8118000" />
-      <workItem from="1727616067655" duration="4433000" />
+      <workItem from="1727616067655" duration="8259000" />
     </task>
     <task id="LOCAL-00001" summary="create1">
       <option name="closed" value="true" />
@@ -246,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727536573109</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="query ok">
+      <option name="closed" value="true" />
+      <created>1727620557614</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1727620557614</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,7 +263,19 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="create1" />
     <MESSAGE value="create ok" />
-    <option name="LAST_COMMIT_MESSAGE" value="create ok" />
+    <MESSAGE value="query ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="query ok" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/service/BlogServiceGrpcFacade.kt</url>
+          <line>67</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

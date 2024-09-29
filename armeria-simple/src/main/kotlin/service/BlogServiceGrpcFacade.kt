@@ -17,7 +17,7 @@ class BlogServiceGrpcFacade: BlogServiceGrpc.BlogServiceImplBase() {
         request: CreateBlogReq,
         responseObserver: StreamObserver<CreateBlogResp>
     ) {
-        val id = idGenerator.getAndDecrement()
+        val id = idGenerator.getAndIncrement()
         val now = Instant.now()
 
         val blog = Blog.newBuilder()
@@ -55,6 +55,59 @@ class BlogServiceGrpcFacade: BlogServiceGrpc.BlogServiceImplBase() {
 
         responseObserver.onNext(resp.build())
         responseObserver.onCompleted()
+    }
+
+    override fun queryBlogByIds(
+        request: QueryBlogByIdsReq,
+        responseObserver: StreamObserver<QueryBlogByIdsResp>,
+    ) {
+        val blogs = blogRepo.filter {
+            return@filter request.idsList.contains(it.key)
+        }.map { it.value }
+
+        val resp = QueryBlogByIdsResp.newBuilder()
+            .addAllBlogs(blogs)
+            .build()
+        responseObserver.onNext(resp)
+        responseObserver.onCompleted()
+    }
+
+    override fun updateBlogById(
+        request: UpdateBlogByIdReq,
+        responseObserver: StreamObserver<UpdateBlogResp>
+    ) {
+        //这里的校验一般不再这一层做(还会有 Handler 读写分离类)
+        val (errorMsg, beforeBlog) = checkAndGetPair(request)
+        if (errorMsg != null) {
+            responseObserver.onNext(
+                UpdateBlogResp.newBuilder()
+                .setErrorMsg(errorMsg)
+                .build()
+            )
+            responseObserver.onCompleted()
+            return
+        }
+
+        val afterBlog = Blog.newBuilder().apply {
+            id = beforeBlog!!.id
+            title = request.title
+            content = request.content
+        }.build()
+        blogRepo[afterBlog.id] = afterBlog
+
+        val resp = UpdateBlogResp.newBuilder()
+            .setBlog(afterBlog)
+            .build()
+        responseObserver.onNext(resp)
+        responseObserver.onCompleted()
+    }
+
+    private fun checkAndGetPair(req: UpdateBlogByIdReq): Pair<String?, Blog?> {
+        val blog = blogRepo[req.id]
+            ?: return "文章不存在" to null
+        // 如果还需要其他校验
+        // ...
+        return null to blog
     }
 
 }

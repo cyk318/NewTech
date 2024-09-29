@@ -44,7 +44,7 @@ message UpdateBlogByIdReq {
   string content = 3;
 }
 message UpdateBlogResp {
-  Blog blog = 1;
+  optional Blog blog = 1;
   optional string errorMsg = 2;
 }
 
