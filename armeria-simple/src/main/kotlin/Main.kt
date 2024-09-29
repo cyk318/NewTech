@@ -1,6 +1,6 @@
 import com.linecorp.armeria.server.Server
 import com.linecorp.armeria.server.grpc.GrpcService
-import service.BlogService
+import service.BlogServiceGrpcFacade
 
 object ArmeriaGrpcBean {
     fun newServer(port: Int): Server {
@@ -8,7 +8,7 @@ object ArmeriaGrpcBean {
             .http(port) // 1.配置端口号
             .service(
                 GrpcService.builder()
-                    .addService(BlogService()) // 2.添加服务示例
+                    .addService(BlogServiceGrpcFacade()) // 2.添加服务示例
                     .build()
             )
             .build()
