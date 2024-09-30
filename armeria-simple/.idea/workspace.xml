@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2808405d-c834-40a7-8bda-e368ddad9416" name="Changes" comment="update ok">
-      <change afterPath="$PROJECT_DIR$/src/main/proto/hello.proto" afterDir="false" />
+    <list default="true" id="2808405d-c834-40a7-8bda-e368ddad9416" name="Changes" comment="hello">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/component/Decorator.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/service/HelloServiceGrpcFacade.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/HelloServiceGrpcFacadeTests.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/service/BlogServiceGrpcFacade.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/service/BlogServiceGrpcFacade.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/BlogServiceGrpcFacadeTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/BlogServiceGrpcFacadeTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +80,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Gradle.BlogServiceGrpcFacadeTest.deleteByIdTest">
+  <component name="RunManager" selected="Gradle.HelloServiceGrpcFacadeTests.test1">
     <configuration name="BlogServiceGrpcFacadeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -118,30 +119,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;BlogServiceGrpcFacadeTest.deleteByIdTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="BlogServiceGrpcFacadeTest.queryBlogByIdTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;BlogServiceGrpcFacadeTest.queryBlogByIdTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -200,13 +177,37 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="HelloServiceGrpcFacadeTests.test1" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;HelloServiceGrpcFacadeTests.test1&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.HelloServiceGrpcFacadeTests.test1" />
         <item itemvalue="Gradle.BlogServiceGrpcFacadeTest.deleteByIdTest" />
         <item itemvalue="Gradle.BlogServiceGrpcFacadeTest.updateBlogTest" />
         <item itemvalue="Gradle.BlogServiceGrpcFacadeTest.queryBlogByIdsTest" />
         <item itemvalue="Gradle.BlogServiceGrpcFacadeTest" />
-        <item itemvalue="Gradle.BlogServiceGrpcFacadeTest.queryBlogByIdTest" />
       </list>
     </recent_temporary>
   </component>
@@ -221,7 +222,7 @@
       <workItem from="1727528555626" duration="8118000" />
       <workItem from="1727616067655" duration="8267000" />
       <workItem from="1727625529939" duration="21000" />
-      <workItem from="1727699879883" duration="2506000" />
+      <workItem from="1727699879883" duration="11577000" />
     </task>
     <task id="LOCAL-00001" summary="create1">
       <option name="closed" value="true" />
@@ -271,7 +272,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727625542958</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="hello">
+      <option name="closed" value="true" />
+      <created>1727702794987</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1727702794987</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,7 +291,8 @@
     <MESSAGE value="create ok" />
     <MESSAGE value="query ok" />
     <MESSAGE value="update ok" />
-    <option name="LAST_COMMIT_MESSAGE" value="update ok" />
+    <MESSAGE value="hello" />
+    <option name="LAST_COMMIT_MESSAGE" value="hello" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
