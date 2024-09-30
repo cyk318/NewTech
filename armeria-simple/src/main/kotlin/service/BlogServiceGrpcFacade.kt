@@ -1,5 +1,6 @@
 package service
 
+import com.google.protobuf.Empty
 import io.grpc.stub.StreamObserver
 import org.cyk.armeria.grpc.blog.*
 import java.time.Instant
@@ -99,6 +100,15 @@ class BlogServiceGrpcFacade: BlogServiceGrpc.BlogServiceImplBase() {
             .setBlog(afterBlog)
             .build()
         responseObserver.onNext(resp)
+        responseObserver.onCompleted()
+    }
+
+    override fun deleteBlogById(
+        request: DeleteBlogByIdReq,
+        responseObserver: StreamObserver<Empty>
+    ) {
+        blogRepo.remove(request.id)
+        responseObserver.onNext(Empty.getDefaultInstance())
         responseObserver.onCompleted()
     }
 

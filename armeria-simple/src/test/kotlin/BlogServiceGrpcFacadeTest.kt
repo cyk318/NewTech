@@ -2,12 +2,14 @@ import com.linecorp.armeria.client.grpc.GrpcClients
 import com.linecorp.armeria.server.Server
 import org.cyk.armeria.grpc.blog.BlogServiceGrpc
 import org.cyk.armeria.grpc.blog.CreateBlogReq
+import org.cyk.armeria.grpc.blog.DeleteBlogByIdReq
 import org.cyk.armeria.grpc.blog.QueryBlogByIdReq
 import org.cyk.armeria.grpc.blog.QueryBlogByIdsReq
 import org.cyk.armeria.grpc.blog.UpdateBlogByIdReq
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.Test
+import kotlin.test.assertTrue
 
 class BlogServiceGrpcFacadeTest {
 
@@ -99,6 +101,31 @@ class BlogServiceGrpcFacadeTest {
             .build()
         val blogAfter = stub.updateBlogById(updateReq)
         println("title: " + blogAfter.blog.title)
+    }
+
+    @Test
+    fun deleteByIdTest() {
+        val cq = CreateBlogReq.newBuilder()
+            .setTitle("blog")
+            .setContent("balabala ...")
+            .build()
+        stub.createBlog(cq)
+
+        val qq = QueryBlogByIdReq.newBuilder()
+            .setId(0)
+            .build()
+        stub.queryBlogById(qq).also {
+            assertTrue { it.hasBlog() }
+        }
+
+        val dq = DeleteBlogByIdReq.newBuilder()
+            .setId(0)
+            .build()
+        stub.deleteBlogById(dq)
+
+        stub.queryBlogById(qq).also {
+            assertTrue { !it.hasBlog() }
+        }
     }
 
 }
