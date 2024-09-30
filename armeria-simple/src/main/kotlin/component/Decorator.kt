@@ -12,7 +12,7 @@ import java.util.function.Function
  */
 class CustomDecorator(
     delegate: HttpService,
-) : DecoratingHttpServiceFunction, SimpleDecoratingHttpService(delegate) {
+) : SimpleDecoratingHttpService(delegate) {
 
     companion object {
         private val log = LoggerFactory.getLogger(CustomDecorator::class.java)
