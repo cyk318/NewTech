@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2808405d-c834-40a7-8bda-e368ddad9416" name="Changes" comment="hello">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/component/Decorator.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/service/HelloServiceGrpcFacade.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/HelloServiceGrpcFacadeTests.kt" afterDir="false" />
+    <list default="true" id="2808405d-c834-40a7-8bda-e368ddad9416" name="Changes" comment="装饰器">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/service/HelloServiceGrpcFacade.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/service/HelloServiceGrpcFacade.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +44,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="KotlinCodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -80,31 +81,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Gradle.HelloServiceGrpcFacadeTests.test1">
-    <configuration name="BlogServiceGrpcFacadeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;BlogServiceGrpcFacadeTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Kotlin.MainKt">
     <configuration name="BlogServiceGrpcFacadeTest.deleteByIdTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -201,13 +178,20 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainKt" />
+      <module name="armeria-simple.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.MainKt" />
         <item itemvalue="Gradle.HelloServiceGrpcFacadeTests.test1" />
         <item itemvalue="Gradle.BlogServiceGrpcFacadeTest.deleteByIdTest" />
         <item itemvalue="Gradle.BlogServiceGrpcFacadeTest.updateBlogTest" />
         <item itemvalue="Gradle.BlogServiceGrpcFacadeTest.queryBlogByIdsTest" />
-        <item itemvalue="Gradle.BlogServiceGrpcFacadeTest" />
       </list>
     </recent_temporary>
   </component>
@@ -222,7 +206,8 @@
       <workItem from="1727528555626" duration="8118000" />
       <workItem from="1727616067655" duration="8267000" />
       <workItem from="1727625529939" duration="21000" />
-      <workItem from="1727699879883" duration="11577000" />
+      <workItem from="1727699879883" duration="11913000" />
+      <workItem from="1727755076303" duration="3537000" />
     </task>
     <task id="LOCAL-00001" summary="create1">
       <option name="closed" value="true" />
@@ -280,11 +265,38 @@
       <option name="project" value="LOCAL" />
       <updated>1727702794987</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="装饰器">
+      <option name="closed" value="true" />
+      <created>1727712189566</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1727712189566</updated>
+    </task>
+    <task id="LOCAL-00009" summary="装饰器">
+      <option name="closed" value="true" />
+      <created>1727712292362</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1727712292362</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="create1" />
@@ -292,7 +304,8 @@
     <MESSAGE value="query ok" />
     <MESSAGE value="update ok" />
     <MESSAGE value="hello" />
-    <option name="LAST_COMMIT_MESSAGE" value="hello" />
+    <MESSAGE value="装饰器" />
+    <option name="LAST_COMMIT_MESSAGE" value="装饰器" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

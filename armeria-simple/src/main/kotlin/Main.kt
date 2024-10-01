@@ -1,9 +1,9 @@
-import com.linecorp.armeria.common.logging.LoggingDecoratorBuilder
+
 import com.linecorp.armeria.server.Server
 import com.linecorp.armeria.server.grpc.GrpcService
-import component.Custom2
 import component.CustomDecorator
 import service.HelloServiceGrpcFacade
+
 
 object ArmeriaGrpcBean {
 
@@ -13,21 +13,16 @@ object ArmeriaGrpcBean {
             .service(
                 GrpcService.builder()
                     .addService(HelloServiceGrpcFacade())
+                    .enableUnframedRequests(true) // 👈👈👈 启用无框请求
                     .build(),
-//                listOf(CustomDecorator.newDecorator()) // 👈👈👈
+                CustomDecorator.newDecorator(),
             )
             .build()
     }
 
 }
 
-fun main(args: Array<String>) {
-//    val log = LoggerFactory.getLogger("MainLogger")
-
+fun main() {
     val server = ArmeriaGrpcBean.newServer(9000)
-    server.closeOnJvmShutdown().thenRun {
-//        log.info("Server is closed ...")
-    }
-
     server.start().join()
 }
