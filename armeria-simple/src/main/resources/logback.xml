@@ -1,0 +1,16 @@
+<configuration>
+
+    <!-- 设置根日志级别为 INFO 或更高 -->
+    <root level="INFO">
+        <!-- 这里定义日志输出的位置，比如输出到控制台 -->
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+    <!-- 定义控制台输出的 appender -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+</configuration>

@@ -33,6 +33,7 @@ protobuf {
 }
 
 dependencies {
+    implementation ("com.alibaba.nacos:nacos-client:2.3.2")
     implementation ("com.linecorp.armeria:armeria:1.30.1")
     implementation ("com.linecorp.armeria:armeria-grpc:1.30.1")
     compileOnly("javax.annotation:javax.annotation-api:1.3.2")

@@ -116,5 +116,4 @@ class HelloServiceGrpcFacadeTests2 {
         require(resp.msg == expect ) { "expect: $expect, actual: ${resp.msg} "}
     }
 
-
 }
