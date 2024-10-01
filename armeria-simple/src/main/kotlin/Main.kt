@@ -1,5 +1,6 @@
 
 import com.alibaba.nacos.api.NacosFactory
+import com.alibaba.nacos.api.naming.NamingService
 import com.alibaba.nacos.api.naming.pojo.Instance
 import com.linecorp.armeria.server.Server
 import com.linecorp.armeria.server.docs.DocService
@@ -27,6 +28,18 @@ object ArmeriaGrpcBean {
 
 }
 
+object NacosBean {
+
+    fun newService(): NamingService = NacosFactory
+        .createNamingService(
+            Properties().apply {
+                put("serverAddr", "100.64.0.0:8848")
+                put("namespace", "0dc9a7f0-5f97-445a-87e5-9fe6869d6708") //可选，默认 public (命名空间需要提前在 nacos 客户端上创建，此处填写命名空间ID)
+            }
+        )
+
+}
+
 fun main() {
 
     val server1 = ArmeriaGrpcBean.newServer(9001)
@@ -35,12 +48,7 @@ fun main() {
     server2.start().join()
 
     // 连接 nacos，并注册集群
-    val nacos = NacosFactory.createNamingService(
-        Properties().apply {
-            put("serverAddr", "100.64.0.0:8848")
-            put("namespace", "0dc9a7f0-5f97-445a-87e5-9fe6869d6708") //可选，默认 public (命名空间需要提前在 nacos 客户端上创建，此处填写命名空间ID)
-        }
-    )
+    val nacos = NacosBean.newService()
     val instance1 = Instance().apply {
         ip = "100.94.135.96"
         port = 9001

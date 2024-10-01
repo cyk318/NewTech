@@ -79,6 +79,36 @@ class GrpcLoadBalancingTests {
 
     }
 
+    @Test
+    fun testNacosLB() {
+        // 从 nacos 中获取 helloGrpcService 服务下所有 健康 的服务实例
+        val endpointGroup = NacosBean.newService()
+            .selectInstances("helloGrpcService", "DEFAULT", true) // healthy: true
+            .map { Endpoint.of(it.ip, it.port) }
+            .let { endpoints ->
+                EndpointGroup.of(
+                    EndpointSelectionStrategy.roundRobin(),
+                    endpoints
+                )
+            }
 
+        val clientLB = GrpcClients.builder("gproto+http://group/")
+            .endpointRemapper { endpointGroup }
+            .decorator(
+                DecoratingHttpClientFunction { delegate, ctx, req ->
+                    println("目标端点: ${ctx.endpoint()!!.port()}")
+                    return@DecoratingHttpClientFunction delegate.execute(ctx, req)
+                }
+            )
+            .build(HelloServiceBlockingStub::class.java)
+        val req = HelloReq.newBuilder()
+            .setName("cyk")
+            .build()
+        for (i in 0..10) {
+            val resp = clientLB.hello(req)
+            val expect = "hello cyk ~"
+            require(resp.msg == expect ) { "expect: $expect, actual: ${resp.msg} "}
+        }
+    }
 
 }

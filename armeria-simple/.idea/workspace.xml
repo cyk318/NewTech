@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2808405d-c834-40a7-8bda-e368ddad9416" name="Changes" comment="testDecorator">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/GrpcLoadBalancingTests.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/logback.xml" afterDir="false" />
+    <list default="true" id="2808405d-c834-40a7-8bda-e368ddad9416" name="Changes" comment="nacos 集成 armeria">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/component/Decorator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/component/Decorator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/HelloServiceGrpcFacadeTests.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/HelloServiceGrpcFacadeTests.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/GrpcLoadBalancingTests.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/GrpcLoadBalancingTests.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +89,7 @@
       <recent name="D:\codeRepositories\GitHub\NewTech\armeria-simple\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.MainKt">
+  <component name="RunManager" selected="Gradle.GrpcLoadBalancingTests.testNacosLB">
     <configuration name="GrpcLoadBalancingTests.test" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -143,7 +138,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="HelloServiceGrpcFacadeTests2.test" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="GrpcLoadBalancingTests.testNacos" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -156,7 +151,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;HelloServiceGrpcFacadeTests2.test&quot;" />
+            <option value="&quot;GrpcLoadBalancingTests.testNacos&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -167,7 +162,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="HelloServiceGrpcFacadeTests2.testDecorator" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="GrpcLoadBalancingTests.testNacosLB" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -180,7 +175,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;HelloServiceGrpcFacadeTests2.testDecorator&quot;" />
+            <option value="&quot;GrpcLoadBalancingTests.testNacosLB&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -200,11 +195,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.GrpcLoadBalancingTests.testNacosLB" />
+        <item itemvalue="Gradle.GrpcLoadBalancingTests.testNacos" />
         <item itemvalue="Kotlin.MainKt" />
         <item itemvalue="Gradle.GrpcLoadBalancingTests.testCustom" />
         <item itemvalue="Gradle.GrpcLoadBalancingTests.test" />
-        <item itemvalue="Gradle.HelloServiceGrpcFacadeTests2.testDecorator" />
-        <item itemvalue="Gradle.HelloServiceGrpcFacadeTests2.test" />
       </list>
     </recent_temporary>
   </component>
@@ -221,7 +216,7 @@
       <workItem from="1727625529939" duration="21000" />
       <workItem from="1727699879883" duration="11913000" />
       <workItem from="1727755076303" duration="21742000" />
-      <workItem from="1727779163460" duration="3679000" />
+      <workItem from="1727779163460" duration="5209000" />
     </task>
     <task id="LOCAL-00001" summary="create1">
       <option name="closed" value="true" />
@@ -311,7 +306,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727766925330</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="nacos 集成 armeria">
+      <option name="closed" value="true" />
+      <created>1727789825323</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1727789825323</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,7 +340,8 @@
     <MESSAGE value="装饰器" />
     <MESSAGE value="无框架请求" />
     <MESSAGE value="testDecorator" />
-    <option name="LAST_COMMIT_MESSAGE" value="testDecorator" />
+    <MESSAGE value="nacos 集成 armeria" />
+    <option name="LAST_COMMIT_MESSAGE" value="nacos 集成 armeria" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
