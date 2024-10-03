@@ -8,7 +8,7 @@ data class UserInfo (
     val password: String,
     val phone: String?, //手机号(唯一)
     val avatar: String, //头像
-    val auth: Int, //用户权限
+    val auth: UserAuth, //用户权限
     val cTime: LocalDateTime,
     val uTime: LocalDateTime,
 )
