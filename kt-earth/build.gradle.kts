@@ -30,6 +30,7 @@ dependencies {
     implementation("com.auth0:java-jwt:4.4.0")
     implementation("org.slf4j:slf4j-api:2.0.13")
     implementation("io.minio:minio:8.5.11")
+//    implementation("cn.hutool:hutool-captcha:5.8.26")
 
     // kotlin 相关
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")

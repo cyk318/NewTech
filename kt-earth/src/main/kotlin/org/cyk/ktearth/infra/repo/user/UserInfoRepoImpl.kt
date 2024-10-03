@@ -14,14 +14,14 @@ import java.util.Date
 @Document("user_info")
 data class UserInfoDo (
     @Id
-    val id: String? = null,
-    val username: String,
+    val id: String?,
+    val username: String, //花名(不能重复)
     val password: String,
-    val phone: String? = null, //手机号(唯一)
-    val avatar: String = "default", //头像
-    val auth: UserAuth = UserAuth.NORMAL, //用户权限
-    val cTime: Long = Date().time,
-    val uTime: Long = Date().time,
+    val phone: String?, //手机号(唯一)
+    val avatar: String, //头像
+    val auth: UserAuth, //用户权限
+    val cTime: Long,
+    val uTime: Long,
 )
 
 //@Repository
