@@ -8,8 +8,9 @@ object PasswordGenerator {
     private const val DIGITS = "0123456789"
     private const val SPECIAL_CHARS = "!@#$%^&*()-_+=<>?"
 
-    fun generate(length: Int): String {
-        require(length >= 8) { "密码长度必须至少为 8 个字符" }
+    fun generate(): String {
+        //密码长度范围在 16 ~ 32 之间
+        val length = (16 .. 32).random()
 
         // 确保密码至少包含大写字母、小写字母、数字和特殊字符
         val password = StringBuilder(length)

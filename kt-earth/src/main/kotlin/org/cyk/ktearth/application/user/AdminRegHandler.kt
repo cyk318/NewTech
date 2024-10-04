@@ -24,7 +24,7 @@ class AdminRegHandler(
             throw AppException(ApiStatus.USERNAME_EXISTS, "该用户名已经存在")
         }
         //2.生成随机密码
-        val randomPwd = PasswordGenerator.generate(32)
+        val randomPwd = PasswordGenerator.generate()
         //3.落库
         val now = Date().time
         val obj = input.run {

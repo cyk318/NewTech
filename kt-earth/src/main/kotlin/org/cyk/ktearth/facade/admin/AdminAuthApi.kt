@@ -1,8 +1,12 @@
 package org.cyk.ktearth.facade.admin
 
+import jakarta.validation.Valid
+import jakarta.validation.constraints.Size
 import org.cyk.ktearth.application.user.AdminRegCmd
 import org.cyk.ktearth.application.user.AdminRegHandler
+import org.cyk.ktearth.infra.model.ApiResp
 import org.hibernate.validator.constraints.Length
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController
  * 管理员权限信息
  * @author yikang.chen
  */
+@Validated
 @RestController
 @RequestMapping("/admin/auth")
 class AdminAuthApi(
@@ -23,10 +28,11 @@ class AdminAuthApi(
      */
     @PostMapping("/reg")
     fun reg(
-        @RequestBody regDto: RegDto,
-    ) {
+        @RequestBody @Valid regDto: RegDto,
+    ): ApiResp<Unit> {
         val cmd = AdminRegCmd (regDto.username)
         adminRegHandler.handler(cmd)
+        return ApiResp.ok()
     }
 
 }
