@@ -2,7 +2,7 @@ package org.cyk.ktearth.facade.user
 
 import jakarta.validation.Valid
 import jakarta.validation.constraints.NotBlank
-import org.cyk.ktearth.application.user.AdminRegHandler
+import org.cyk.ktearth.application.user.LoginCmd
 import org.cyk.ktearth.application.user.UserLoginHandler
 import org.cyk.ktearth.infra.model.ApiResp
 import org.hibernate.validator.constraints.Length
@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import kotlin.math.max
-import kotlin.math.min
 
 /**
  * 用户权限信息
@@ -29,7 +27,9 @@ class UserAuthApi(
     fun login(
         @RequestBody @Valid dto: LoginDto,
     ): ApiResp<String> {
-        TODO()
+        val cmd = LoginCmd(dto.username, dto.password)
+        val token = userLoginHandler.handler(cmd)
+        return ApiResp.ok(token)
     }
 
 }
@@ -37,7 +37,10 @@ class UserAuthApi(
 data class LoginDto (
     @field:Length(min = 2, max = 32)
     val username: String,
-    @field:Length(min = 32, max = 32)
+    /**
+     * 不校验长度的原因: 让暴力破解的人不能锁定密码长度
+     */
+    @field:NotBlank
     val password: String,
 )
 

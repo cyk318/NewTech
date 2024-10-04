@@ -3,6 +3,7 @@ package org.cyk.ktearth.service
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import jakarta.servlet.http.HttpServletRequest
+import org.cyk.ktearth.domain.user.repo.UserAddrRepo
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import java.io.Serializable
@@ -30,7 +31,7 @@ data class HttpServletRequestTiny (
     val remoteAddr: String,
 )
 
-data class SaveOrUpdateUserAddrInfoCmd(
+data class SaveOrUpdateUserAddrCmd(
     val userId: String,
     val ip: String?,
     val addr: String?,
@@ -39,12 +40,12 @@ data class SaveOrUpdateUserAddrInfoCmd(
 
 @Service
 class IPGeoInfoService(
-//    private val userRepoImpl: UserRepoImpl,
+    private val userAddrRepo: UserAddrRepo,
 ) {
 
     private val httpClient = HttpClient.newHttpClient()
     private val mapper = ObjectMapper()
-    private val asyncUpdateIpGeoExecutor = Executors.newFixedThreadPool(4)
+    private val asyncUpdateIpGeoExecutor = Executors.newFixedThreadPool(2)
 
     /**
      * 异步更新 ip addr 信息
@@ -65,14 +66,14 @@ class IPGeoInfoService(
             } else {
                 //数据同步到数据库
                 val ipGeoInfo = mapper.readValue<IPGeoInfo>(resp.body())
-//                userRepoImpl.saveOrUpdateUserAddrInfo(
-//                    SaveOrUpdateUserAddrInfoCmd(
-//                        userId = userId,
-//                        ip = ipGeoInfo.ip,
-//                        addr = ipGeoInfo.addr,
-//                        err = ipGeoInfo.err,
-//                    )
-//                )
+                userAddrRepo.saveOrUpdateUserAddr (
+                    SaveOrUpdateUserAddrCmd(
+                        userId = userId,
+                        ip = ipGeoInfo.ip,
+                        addr = ipGeoInfo.addr,
+                        err = ipGeoInfo.err,
+                    )
+                )
             }
         }
     }
