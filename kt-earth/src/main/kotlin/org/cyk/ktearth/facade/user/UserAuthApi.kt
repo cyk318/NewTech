@@ -1,5 +1,6 @@
 package org.cyk.ktearth.facade.user
 
+import jakarta.servlet.http.HttpServletRequest
 import jakarta.validation.Valid
 import jakarta.validation.constraints.NotBlank
 import org.cyk.ktearth.application.user.LoginCmd
@@ -25,9 +26,14 @@ class UserAuthApi(
 
     @PostMapping("/login")
     fun login(
+        request: HttpServletRequest,
         @RequestBody @Valid dto: LoginDto,
     ): ApiResp<String> {
-        val cmd = LoginCmd(dto.username, dto.password)
+        val cmd = LoginCmd(
+            request = request,
+            username = dto.username,
+            password = dto.password,
+        )
         val token = userLoginHandler.handler(cmd)
         return ApiResp.ok(token)
     }
