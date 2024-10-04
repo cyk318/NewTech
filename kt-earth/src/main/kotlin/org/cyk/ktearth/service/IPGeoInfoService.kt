@@ -38,10 +38,14 @@ data class SaveOrUpdateUserAddrCmd(
     val err: String,
 )
 
+interface IPGeoInfoService {
+    fun asyncUpdateIPGeoInfo(request: HttpServletRequest, userId: String)
+}
+
 @Service
-class IPGeoInfoService(
+class IPGeoInfoServiceImpl(
     private val userAddrRepo: UserAddrRepo,
-) {
+): IPGeoInfoService {
 
     private val httpClient = HttpClient.newHttpClient()
     private val mapper = ObjectMapper()
@@ -51,7 +55,7 @@ class IPGeoInfoService(
      * 异步更新 ip addr 信息
      * 通过太平洋网站获取具体的 ip addr 信息，速度较慢，这里采用异步方式
      */
-    fun asyncUpdateIPGeoInfo(request: HttpServletRequest, userId: String) {
+    override fun asyncUpdateIPGeoInfo(request: HttpServletRequest, userId: String) {
         //由于 request 只会存在主线程，其他线程无法获取上下文，因此使用 tiny 对象进行异步操作
         val ip = getIP(httpServletRequestTinyConvert(request))
         asyncUpdateIpGeoExecutor.submit {
@@ -116,6 +120,8 @@ class IPGeoInfoService(
         )
     }
 
-    private val log = LoggerFactory.getLogger(IPGeoInfoService::class.java)
+    companion object {
+        private val log = LoggerFactory.getLogger(IPGeoInfoService::class.java)
+    }
 
 }
