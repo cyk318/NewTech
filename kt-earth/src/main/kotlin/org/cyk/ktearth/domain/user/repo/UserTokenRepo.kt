@@ -8,4 +8,6 @@ interface UserTokenRepo {
 
     fun getTokenByUserId(userId: String): String?
 
+    fun delByUserId(userId: String)
+
 }

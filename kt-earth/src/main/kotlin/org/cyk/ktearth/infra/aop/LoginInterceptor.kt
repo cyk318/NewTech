@@ -3,6 +3,8 @@ package org.cyk.ktearth.infra.aop
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.cyk.ktearth.domain.user.repo.UserTokenRepo
+import org.cyk.ktearth.infra.exception.AppException
+import org.cyk.ktearth.infra.model.ApiStatus
 import org.cyk.ktearth.infra.utils.IPUtils
 import org.cyk.ktearth.infra.utils.UserTokenUtils
 import org.slf4j.LoggerFactory
@@ -29,8 +31,7 @@ class LoginInterceptor(
         if (isValidToken) {
             return true
         }
-        log.error("被拦截...  ip: ${IPUtils.getClientIp(request)}")
-        return false
+        throw AppException(ApiStatus.NOT_LOGIN, "用户未登录，已被拦截...  ip: ${IPUtils.getClientIp(request)}")
     }
 
     companion object {

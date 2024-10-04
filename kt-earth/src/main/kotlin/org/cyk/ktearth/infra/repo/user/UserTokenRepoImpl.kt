@@ -29,6 +29,10 @@ class UserTokenRepoImpl(
         return redisTemplate.opsForValue().get(RedisConst.makeUserTokenKey(userId))
     }
 
+    override fun delByUserId(userId: String) {
+       redisTemplate.opsForValue().getAndDelete(RedisConst.makeUserTokenKey(userId))
+    }
+
 }
 
 

@@ -1,6 +1,7 @@
 package org.cyk.ktearth.application.user
 
 import jakarta.servlet.http.HttpServletRequest
+import org.apache.juli.logging.LogFactory
 import org.cyk.ktearth.application.ApplicationHandler
 import org.cyk.ktearth.domain.user.repo.UserInfoRepo
 import org.cyk.ktearth.domain.user.repo.UserTokenRepo
@@ -10,6 +11,7 @@ import org.cyk.ktearth.infra.repo.user.SaveUserTokenCmd
 import org.cyk.ktearth.infra.utils.JwtUtils
 import org.cyk.ktearth.infra.utils.UserTokenUtils
 import org.cyk.ktearth.service.IPGeoInfoService
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 
 data class LoginCmd (
@@ -44,7 +46,13 @@ class UserLoginHandler(
         ))
         //5.记录 ip 信息
         ipGeoInfoService.asyncUpdateIPGeoInfo(input.request, userId)
+
+        log.info("用户登录成功  userId: ${userId}, username: ${user.username}")
         return token
+    }
+
+    companion object {
+        private val log = LoggerFactory.getLogger(UserLoginHandler::class.java)
     }
 
 }
