@@ -31,16 +31,18 @@ class UserLoginHandler(
             ?: throw AppException(ApiStatus.USERNAME_OR_PASSWORD_ERROR, "用户名不存在 $input")
         //2.密码必须正确
         if (user.password != input.password) {
-            throw AppException(ApiStatus.USERNAME_OR_PASSWORD_ERROR, "用户名不存在 $input")
+            throw AppException(ApiStatus.USERNAME_OR_PASSWORD_ERROR, "密码错误 $input")
         }
-        //3.生成并保存 token
+        //3.如果用户已经登录，直接返回 token
         val userId = user.id!!
+        userTokenRepo.getTokenByUserId(userId)?.let { return it }
+        //4.生成并保存 token
         val token = UserTokenUtils.generateTokenByUserId(userId)
         userTokenRepo.save(SaveUserTokenCmd(
             userId = userId,
             token = token
         ))
-        //4.记录 ip 信息
+        //5.记录 ip 信息
         ipGeoInfoService.asyncUpdateIPGeoInfo(input.request, userId)
         return token
     }

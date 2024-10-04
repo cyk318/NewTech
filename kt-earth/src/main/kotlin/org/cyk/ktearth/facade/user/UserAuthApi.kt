@@ -24,6 +24,9 @@ class UserAuthApi(
     private val userLoginHandler: UserLoginHandler
 ) {
 
+    /**
+     * 登录
+     */
     @PostMapping("/login")
     fun login(
         request: HttpServletRequest,
