@@ -6,7 +6,7 @@ class PasswordGeneratorTest {
 
     @Test
     fun test() {
-        val result = PasswordGenerator.generateStrongPassword(32)
+        val result = PasswordGenerator.generate(32)
         println(result)
         println(result.length)
     }

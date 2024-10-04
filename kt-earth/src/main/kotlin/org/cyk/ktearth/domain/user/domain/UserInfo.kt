@@ -2,7 +2,7 @@ package org.cyk.ktearth.domain.user.domain
 
 
 data class UserInfo (
-    val id: String? = null,
+    var id: String? = null,
     val username: String, //花名(不能重复)
     val password: String,
     val phone: String? = null, //手机号(唯一)
