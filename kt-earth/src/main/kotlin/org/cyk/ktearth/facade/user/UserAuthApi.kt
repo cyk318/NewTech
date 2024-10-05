@@ -4,7 +4,7 @@ import jakarta.servlet.http.HttpServletRequest
 import jakarta.validation.Valid
 import jakarta.validation.constraints.NotBlank
 import org.cyk.ktearth.application.user.LoginCmd
-import org.cyk.ktearth.application.user.UserLoginHandler
+import org.cyk.ktearth.application.user.LoginHandler
 import org.cyk.ktearth.domain.user.repo.UserInfoRepo
 import org.cyk.ktearth.domain.user.repo.UserTokenRepo
 import org.cyk.ktearth.infra.model.ApiResp
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/user/auth")
 class UserAuthApi(
-    private val userLoginHandler: UserLoginHandler,
+    private val loginHandler: LoginHandler,
     private val userTokenRepo: UserTokenRepo,
     private val userInfoRepo: UserInfoRepo,
 ) {
@@ -43,7 +43,7 @@ class UserAuthApi(
             username = dto.username,
             password = dto.password,
         )
-        val token = userLoginHandler.handler(cmd)
+        val token = loginHandler.handler(cmd)
         return ApiResp.ok(token)
     }
 

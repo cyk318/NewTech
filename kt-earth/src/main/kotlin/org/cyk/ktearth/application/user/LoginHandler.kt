@@ -1,14 +1,12 @@
 package org.cyk.ktearth.application.user
 
 import jakarta.servlet.http.HttpServletRequest
-import org.apache.juli.logging.LogFactory
 import org.cyk.ktearth.application.ApplicationHandler
 import org.cyk.ktearth.domain.user.repo.UserInfoRepo
 import org.cyk.ktearth.domain.user.repo.UserTokenRepo
 import org.cyk.ktearth.infra.exception.AppException
 import org.cyk.ktearth.infra.model.ApiStatus
 import org.cyk.ktearth.infra.repo.user.SaveUserTokenCmd
-import org.cyk.ktearth.infra.utils.JwtUtils
 import org.cyk.ktearth.infra.utils.UserTokenUtils
 import org.cyk.ktearth.service.IPGeoInfoService
 import org.slf4j.LoggerFactory
@@ -21,7 +19,7 @@ data class LoginCmd (
 )
 
 @Component
-class UserLoginHandler(
+class LoginHandler(
     private val userInfoRepo: UserInfoRepo,
     private val userTokenRepo: UserTokenRepo,
     private val ipGeoInfoService: IPGeoInfoService,
@@ -52,7 +50,7 @@ class UserLoginHandler(
     }
 
     companion object {
-        private val log = LoggerFactory.getLogger(UserLoginHandler::class.java)
+        private val log = LoggerFactory.getLogger(LoginHandler::class.java)
     }
 
 }
