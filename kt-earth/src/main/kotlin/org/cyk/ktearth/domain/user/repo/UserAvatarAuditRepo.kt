@@ -9,5 +9,6 @@ interface UserAvatarAuditRepo {
     fun removeById(id: String)
 
     fun exists(id: String): Boolean
+    fun queryById(id: String):UserAvatarAudit?
 
 }

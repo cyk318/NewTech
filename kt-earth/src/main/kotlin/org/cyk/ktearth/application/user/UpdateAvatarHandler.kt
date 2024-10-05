@@ -2,7 +2,6 @@ package org.cyk.ktearth.application.user
 
 import org.cyk.ktearth.application.ApplicationHandler
 import org.cyk.ktearth.domain.user.domain.UserAvatarAudit
-import org.cyk.ktearth.domain.user.domain.UserInfo
 import org.cyk.ktearth.domain.user.repo.UserAvatarAuditRepo
 import org.cyk.ktearth.domain.user.repo.UserAvatarRepo
 import org.cyk.ktearth.domain.user.repo.UserInfoRepo
@@ -25,12 +24,12 @@ class UpdateAvatarHandler(
 
     override fun handler(input: UpdateAvatarCmd) {
         // 用户必须存在
-        val user = userInfoRepo.queryById(input.userId)
+        userInfoRepo.queryById(input.userId)
             ?: throw AppException(ApiStatus.INVALID_REQUEST, "用户不存在  userId: ${input.userId}")
         // 该用户的头像审核信息不能存在
         val existAudit = userAvatarAuditRepo.exists(input.userId)
         if (existAudit) {
-            throw AppException(ApiStatus.INVALID_REQUEST, "该用户的头像还在审核中")
+            throw AppException(ApiStatus.INVALID_REQUEST, "该用户的头像还在审核中  userId: ${input.userId}")
         }
         // 保存图片的到 MinIO
         val avatarPath = userAvatarRepo.save(input.avatar)

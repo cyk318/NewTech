@@ -6,6 +6,8 @@ interface UserInfoRepo {
 
     fun save(obj: UserInfo): UserInfo
 
+    fun update(obj: UserInfo)
+
     fun queryByUsername(username: String): UserInfo?
 
     fun queryById(id: String?): UserInfo?

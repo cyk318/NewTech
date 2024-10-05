@@ -14,7 +14,7 @@ class UserAvatarRepoImpl(
     private val minioClient: MinioClient,
 ): UserAvatarRepo {
 
-    @Value("\${user-avatar}")
+    @Value("\${minio.bucket.user.avatar}")
     private lateinit var bucket: String
 
     override fun save(avatar: MultipartFile): String {

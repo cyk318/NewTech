@@ -4,7 +4,6 @@ import org.cyk.ktearth.domain.user.domain.UserAvatarAudit
 import org.cyk.ktearth.domain.user.repo.UserAvatarAuditRepo
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.MongoTemplate
-import org.springframework.data.mongodb.core.exists
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
@@ -37,6 +36,17 @@ class UserAvatarAuditRepoImpl(
     override fun exists(id: String): Boolean {
         val q = Query.query(Criteria.where("_id").`is`(id))
         return mongoTemplate.exists(q, UserAvatarAuditDo::class.java)
+    }
+
+    override fun queryById(id: String): UserAvatarAudit? {
+        val q = Query.query(Criteria.where("_id").`is`(id))
+        return mongoTemplate.findOne(q, UserAvatarAuditDo::class.java)?.let { map(it) }
+    }
+
+    private fun map(o: UserAvatarAuditDo): UserAvatarAudit = with(o) {
+        UserAvatarAudit(
+            userId, avatar, cTime
+        )
     }
 
     private fun map(o: UserAvatarAudit): UserAvatarAuditDo = with(o) {

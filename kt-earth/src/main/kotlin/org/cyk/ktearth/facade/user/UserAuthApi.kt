@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 /**
- * 用户权限信息
+ * 用户
  * @author yikang.chen
  */
 @Validated

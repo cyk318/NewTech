@@ -6,7 +6,7 @@ data class UserInfo (
     val username: String, //花名(不能重复)
     val password: String,
     val phone: String? = null, //手机号(唯一)
-    val avatar: String? = null, //头像
+    var avatar: String? = null, //头像
     val auth: UserAuth = UserAuth.NORMAL, //用户权限
     val cTime: Long,
     val uTime: Long,

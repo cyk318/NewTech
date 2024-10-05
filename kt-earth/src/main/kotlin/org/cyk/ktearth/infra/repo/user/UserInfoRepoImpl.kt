@@ -8,7 +8,11 @@ import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
+import org.springframework.data.mongodb.core.query.Update
+import org.springframework.data.mongodb.core.update
 import org.springframework.stereotype.Repository
+import java.util.*
+import javax.annotation.meta.When
 
 @Document("user_info")
 data class UserInfoDo (
@@ -18,7 +22,7 @@ data class UserInfoDo (
     val password: String,
     val phone: String?, //手机号(唯一)
     val avatar: String?, //头像
-    val auth: Int, //用户权限
+    val auth: UserAuth, //用户权限
     val cTime: Long,
     val uTime: Long,
 )
@@ -32,6 +36,19 @@ class UserInfoRepoImpl(
         val o = map(obj)
         mongoTemplate.save(o).let { obj.id = it.id }
         return obj
+    }
+
+    override fun update(obj: UserInfo) {
+        val q = Query.query(Criteria.where("_id").`is`(obj.id))
+        val u = Update().apply {
+            set("username", obj.username)
+            set("password", obj.password)
+            obj.phone?.let { set("phone", it) }
+            obj.avatar?.let { set("avatar", it) }
+            set("auth", obj.auth)
+            set("u_time", Date().time)
+        }
+        mongoTemplate.updateFirst(q, u, UserInfoDo::class.java)
     }
 
     override fun queryByUsername(username: String): UserInfo? {
@@ -60,7 +77,7 @@ class UserInfoRepoImpl(
             password = password,
             phone = phone,
             avatar = avatar,
-            auth = UserAuth.of(auth)!!,
+            auth = auth,
             cTime = cTime,
             uTime = uTime,
         )
@@ -73,7 +90,7 @@ class UserInfoRepoImpl(
             password = password,
             phone = phone,
             avatar = avatar,
-            auth = auth.code,
+            auth = auth,
             cTime = cTime,
             uTime = uTime,
         )
