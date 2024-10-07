@@ -4,7 +4,6 @@ import org.cyk.ktearth.application.ApplicationHandler
 import org.cyk.ktearth.domain.oss.repo.OssFileRepo
 import org.cyk.ktearth.domain.user.domain.UserAvatarAudit
 import org.cyk.ktearth.domain.user.repo.UserAvatarAuditRepo
-import org.cyk.ktearth.domain.user.repo.UserAvatarRepo
 import org.cyk.ktearth.domain.user.repo.UserInfoRepo
 import org.cyk.ktearth.infra.exception.AppException
 import org.cyk.ktearth.infra.model.ApiStatus

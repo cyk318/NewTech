@@ -3,14 +3,9 @@ package org.cyk.ktearth.facade.article
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.validation.Valid
 import jakarta.validation.constraints.NotBlank
-import jakarta.validation.constraints.NotEmpty
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
-import org.cyk.ktearth.application.article.AdminArticlePubCmd
-import org.cyk.ktearth.application.article.AdminArticlePubHandler
-import org.cyk.ktearth.application.article.AdminArticleRemoveCmd
-import org.cyk.ktearth.application.article.AdminArticleRemoveHandler
-import org.cyk.ktearth.application.user.AdminRegHandler
+import org.cyk.ktearth.application.article.*
 import org.cyk.ktearth.infra.model.ApiResp
 import org.cyk.ktearth.infra.utils.UserTokenUtils
 import org.hibernate.validator.constraints.Length
@@ -20,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.multipart.MultipartFile
-import kotlin.math.max
 
 /**
  * 管理员/文章
@@ -30,7 +24,25 @@ import kotlin.math.max
 class AdminArticleInfoApi(
     private val adminArticlePubHandler: AdminArticlePubHandler,
     private val adminArticleRemoveHandler: AdminArticleRemoveHandler,
+    private val adminUploadCoverHandler: AdminUploadCoverHandler,
+    private val adminArticleUpdateHandler: AdminArticleUpdateHandler,
 ) {
+
+    /**
+     * 上传封面
+     */
+    @PostMapping("/upload/cover")
+    fun uploadCover(
+        request: HttpServletRequest,
+        @ModelAttribute dto: AdminUploadCoverDto,
+    ): ApiResp<String> {
+        val cmd = AdminUploadCoverCmd (
+            userId = UserTokenUtils.getUserIdByRequest(request),
+            file = dto.cover
+        )
+        val path = adminUploadCoverHandler.handler(cmd)
+        return ApiResp.ok(path)
+    }
 
     /**
      * 发布
@@ -70,24 +82,55 @@ class AdminArticleInfoApi(
         return ApiResp.ok()
     }
 
-
-//    @PostMapping("/update")
-//    fun update(
-//        request: HttpServletRequest,
-//        @ModelAttribute @Valid dto: AdminArticlePubDto,
-//    ) {
-//
-//    }
+    /**
+     * 更新 | 实时更新
+     */
+    @PostMapping("/update")
+    fun update(
+        request: HttpServletRequest,
+        @ModelAttribute @Valid dto: AdminArticleUpdateDto,
+    ): ApiResp<Unit> {
+        val cmd = with(dto) {
+            AdminArticleUpdateCmd (id, authorId, title, content, cover, label, type)
+        }
+        adminArticleUpdateHandler.handler(cmd)
+        return ApiResp.ok()
+    }
 
 }
+
+data class AdminArticleUpdateDto(
+    @field:NotBlank
+    val id: String,
+    @field:NotBlank
+    val authorId: String,
+    @field:Length(min = 2, max = 88)
+    val title: String,
+    @field:Length(min = 10, max = 10_0000)
+    val content: String,
+    @field:NotBlank
+    val cover: String,
+    @field:Size(min = 1, max = 5)
+    @field:Valid
+    val label: List<@Length(min = 1, max = 16) String>,
+    /**
+     * 0原创 1草稿
+     */
+    @field:NotNull
+    val type: Int,
+)
+data class AdminUploadCoverDto (
+    @field:NotNull
+    val cover: MultipartFile
+)
 
 data class AdminArticlePubDto(
     @field:Length(min = 2, max = 88)
     val title: String,
     @field:Length(min = 10, max = 10_0000)
     val content: String,
-    @field:NotNull
-    val cover: MultipartFile,
+    @field:NotBlank
+    val cover: String,
     @field:Size(min = 1, max = 5)
     @field:Valid
     val label: List<@Length(min = 1, max = 16) String>,
