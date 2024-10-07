@@ -29,22 +29,6 @@ class AdminArticleInfoApi(
 ) {
 
     /**
-     * 上传封面
-     */
-    @PostMapping("/upload/cover")
-    fun uploadCover(
-        request: HttpServletRequest,
-        @ModelAttribute dto: AdminUploadCoverDto,
-    ): ApiResp<String> {
-        val cmd = AdminUploadCoverCmd (
-            userId = UserTokenUtils.getUserIdByRequest(request),
-            file = dto.cover
-        )
-        val path = adminUploadCoverHandler.handler(cmd)
-        return ApiResp.ok(path)
-    }
-
-    /**
      * 发布
      */
     @PostMapping("/publish")
@@ -91,7 +75,9 @@ class AdminArticleInfoApi(
         @ModelAttribute @Valid dto: AdminArticleUpdateDto,
     ): ApiResp<Unit> {
         val cmd = with(dto) {
-            AdminArticleUpdateCmd (id, authorId, title, content, cover, label, type)
+            AdminArticleUpdateCmd (
+                UserTokenUtils.getUserIdByRequest(request),
+                id, authorId, title, content, cover, label, type)
         }
         adminArticleUpdateHandler.handler(cmd)
         return ApiResp.ok()
@@ -108,8 +94,8 @@ data class AdminArticleUpdateDto(
     val title: String,
     @field:Length(min = 10, max = 10_0000)
     val content: String,
-    @field:NotBlank
-    val cover: String,
+    @field:NotNull
+    val cover: MultipartFile,
     @field:Size(min = 1, max = 5)
     @field:Valid
     val label: List<@Length(min = 1, max = 16) String>,
@@ -119,18 +105,14 @@ data class AdminArticleUpdateDto(
     @field:NotNull
     val type: Int,
 )
-data class AdminUploadCoverDto (
-    @field:NotNull
-    val cover: MultipartFile
-)
 
 data class AdminArticlePubDto(
     @field:Length(min = 2, max = 88)
     val title: String,
     @field:Length(min = 10, max = 10_0000)
     val content: String,
-    @field:NotBlank
-    val cover: String,
+    @field:NotNull
+    val cover: MultipartFile,
     @field:Size(min = 1, max = 5)
     @field:Valid
     val label: List<@Length(min = 1, max = 16) String>,
