@@ -1,13 +1,13 @@
 package org.cyk.ktearth.domain.article.domain
 
-import java.time.LocalDateTime
+import java.util.Date
 
 data class ArticleStat (
     val articleId: String,
-    val likeCnt: Long,
-    val viewCnt: Long,
-    val collectCnt: Long,
-    val commentCnt: Long,
-    val cTime: LocalDateTime,
-    val uTime: LocalDateTime,
+    val likeCnt: Long = 0,
+    val viewCnt: Long = 0,
+    val collectCnt: Long = 0,
+    val commentCnt: Long = 0,
+    val cTime: Long = Date().time,
+    val uTime: Long = Date().time,
 )

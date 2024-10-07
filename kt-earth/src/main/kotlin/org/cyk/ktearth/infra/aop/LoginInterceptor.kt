@@ -2,6 +2,7 @@ package org.cyk.ktearth.infra.aop
 
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
+import org.cyk.ktearth.domain.user.repo.UserInfoRepo
 import org.cyk.ktearth.domain.user.repo.UserTokenRepo
 import org.cyk.ktearth.infra.exception.AppException
 import org.cyk.ktearth.infra.model.ApiStatus
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.HandlerInterceptor
 @Component
 class LoginInterceptor(
     private val userTokenRepo: UserTokenRepo,
+    private val userInfoRepo: UserInfoRepo,
 ): HandlerInterceptor {
 
     override fun preHandle(
@@ -27,6 +29,17 @@ class LoginInterceptor(
         handler: Any
     ): Boolean {
         val userId = UserTokenUtils.getUserIdByRequest(request)
+        val user = userInfoRepo.queryById(userId)
+            ?: throw AppException(ApiStatus.INVALID_REQUEST, "不存在的 userId: $userId")
+
+        //管理员特殊处理
+        val requestURI = request.requestURI
+        if (requestURI.startsWith("/admin")) {
+            if (!user.isAdmin()) {
+                throw AppException(ApiStatus.NO_PERMISSION, "没有权限 user: $user")
+            }
+        }
+
         val isValidToken = userTokenRepo.getTokenByUserId(userId) != null
         if (isValidToken) {
             return true

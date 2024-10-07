@@ -34,6 +34,9 @@ enum class ApiStatus(val code: Int, val msg: String) {
     //访问频率被限制
     FREQUENCY_LIMITED(9, "frequency limited"),
 
+    //没有权限
+    NO_PERMISSION(10, "no permission"),
+
     //用户未登陆
     NOT_LOGIN(40001, "require login"),
  

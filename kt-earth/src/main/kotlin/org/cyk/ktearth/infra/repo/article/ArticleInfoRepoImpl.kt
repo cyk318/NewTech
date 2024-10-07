@@ -1,8 +1,8 @@
 package org.cyk.ktearth.infra.repo.article
 
+import org.cyk.ktearth.domain.article.domain.ArticleInfo
 import org.cyk.ktearth.domain.article.domain.ArticleType
-import org.cyk.ktearth.infra.model.PageResp
-import org.cyk.ktearth.infra.utils.DateUtils
+import org.cyk.ktearth.domain.article.repo.ArticleInfoRepo
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.mapping.Document
@@ -10,34 +10,31 @@ import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
 import org.springframework.data.mongodb.core.query.Update
 import org.springframework.stereotype.Repository
-import java.time.Instant
-import java.time.LocalDateTime
-import java.util.Date
 
 @Document("article_info")
 data class ArticleInfoDo (
     @Id
-    val id: String? = null,
+    val id: String?,
     val authorId: String,
     val title: String,
     val content: String,
     val cover: String, //文章封面
     val label: List<String>, //标签
     val type: ArticleType, //文章类型
-    val cTime: Long = Date().time,
-    val uTime: Long = Date().time,
+    val cTime: Long,
+    val uTime: Long,
 )
 
-//@Repository
-//class ArticleInfoRepoImpl(
-//    private val mongoTemplate: MongoTemplate,
-//): ArticleInfoRepo {
-//
-//    override fun save(cmd: ArticlePubCmd) {
-//        val o = map(cmd)
-//        mongoTemplate.save(o).let { cmd.articleId = it.id!! }
-//    }
-//
+@Repository
+class ArticleInfoRepoImpl(
+    private val mongoTemplate: MongoTemplate,
+): ArticleInfoRepo {
+
+    override fun save(o: ArticleInfo) {
+        val obj = map(o)
+        mongoTemplate.save(obj).let { o.id = it.id!! }
+    }
+
 //    override fun page(cmd: ArticlePageCmd): PageResp<ArticleInfo> {
 //        val c = Criteria()
 //        val q = Query.query(c)
@@ -65,60 +62,55 @@ data class ArticleInfoDo (
 //            null
 //        )
 //    }
-//
-//    override fun queryById(articleId: String): ArticleInfo? {
-//        val q = Query.query(Criteria.where("_id").`is`(articleId))
-//        return mongoTemplate.findOne(q, ArticleInfoDo::class.java)?.let { map(it) }
-//    }
-//
-//    override fun exists(articleId: String): Boolean {
-//        val q = Query.query(Criteria.where("_id").`is`(articleId))
-//        return mongoTemplate.exists(q, ArticleInfoDo::class.java)
-//    }
-//
-//    override fun delById(articleId: String) {
-//        val q = Query.query(Criteria.where("_id").`is`(articleId))
-//        mongoTemplate.remove(q, ArticleInfoDo::class.java)
-//    }
-//
-//    override fun update(cmd: ArticleUpdateCmd) {
-//        val q = Query.query(Criteria.where("_id").`is`(cmd.articleId))
-//        val u = Update().run {
-//            set("title", cmd.title)
-//            set("content", cmd.content)
-//            set("cover", cmd.newCoverPath)
-//            set("label", cmd.label)
-//            set("type", cmd.type)
-//            set("u_time", DateUtils.mongoNowTime())
-//        }
-//        mongoTemplate.updateFirst(q, u, ArticleInfoDo::class.java)
-//    }
-//
-//    private fun map(dto: ArticleInfoDo) = with(dto) {
-//        ArticleInfo (
-//            id = id!!,
-//            authorId = authorId,
-//            title = title,
-//            content = content,
-//            cover = cover,
-//            label = label,
-//            type = type,
-//            cTime = cTime,
-//            uTime = uTime,
-//        )
-//    }
-//
-//    private fun map(cmd: ArticlePubCmd) = with(cmd) {
-//        ArticleInfoDo(
-//            authorId = userId,
-//            title = title,
-//            content = content,
-//            cover = coverPath!!,
-//            label = label,
-//            type = cmd.type,
-//        )
-//    }
-//
-//}
-//
-//
+
+    override fun queryById(articleId: String): ArticleInfo? {
+        val q = Query.query(Criteria.where("_id").`is`(articleId))
+        return mongoTemplate.findOne(q, ArticleInfoDo::class.java)?.let { map(it) }
+    }
+
+    override fun exists(articleId: String): Boolean {
+        val q = Query.query(Criteria.where("_id").`is`(articleId))
+        return mongoTemplate.exists(q, ArticleInfoDo::class.java)
+    }
+
+    override fun delById(articleId: String) {
+        val q = Query.query(Criteria.where("_id").`is`(articleId))
+        mongoTemplate.remove(q, ArticleInfoDo::class.java)
+    }
+
+    override fun update(o: ArticleInfo) {
+        val q = Query.query(Criteria.where("_id").`is`(o.id))
+        val u = Update().run {
+            set("title", o.title)
+            set("content", o.content)
+            set("cover", o.cover)
+            set("label", o.label)
+            set("type", o.type)
+            set("u_time", o.uTime)
+        }
+        mongoTemplate.updateFirst(q, u, ArticleInfoDo::class.java)
+    }
+
+    private fun map(obj: ArticleInfoDo) = with(obj) {
+        ArticleInfo (
+            id = id,
+            authorId = authorId,
+            title = title,
+            content = content,
+            cover = cover,
+            label = label,
+            type = type,
+            cTime = cTime,
+            uTime = uTime,
+        )
+    }
+
+    private fun map(obj: ArticleInfo) = with(obj) {
+        ArticleInfoDo(
+            id, authorId, title, content, cover, label, type, cTime, uTime
+        )
+    }
+
+}
+
+

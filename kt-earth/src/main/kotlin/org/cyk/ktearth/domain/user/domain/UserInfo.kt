@@ -10,7 +10,13 @@ data class UserInfo (
     val auth: UserAuth = UserAuth.NORMAL, //用户权限
     val cTime: Long,
     val uTime: Long,
-)
+) {
+
+    fun isAdmin(): Boolean {
+        return this.auth == UserAuth.ADMIN
+    }
+
+}
 
 
 enum class UserAuth (
