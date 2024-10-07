@@ -6,6 +6,6 @@ interface ArticleCoverRepo {
 
     fun save(cover: MultipartFile): String
 
-    fun delByCover(cover: String)
+    fun removeByCover(cover: String)
 
 }

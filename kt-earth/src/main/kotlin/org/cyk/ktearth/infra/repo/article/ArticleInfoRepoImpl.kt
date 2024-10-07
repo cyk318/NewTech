@@ -73,7 +73,7 @@ class ArticleInfoRepoImpl(
         return mongoTemplate.exists(q, ArticleInfoDo::class.java)
     }
 
-    override fun delById(articleId: String) {
+    override fun removeById(articleId: String) {
         val q = Query.query(Criteria.where("_id").`is`(articleId))
         mongoTemplate.remove(q, ArticleInfoDo::class.java)
     }

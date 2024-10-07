@@ -8,7 +8,7 @@ interface ArticleStatRepo {
 
     fun queryByArticleIds(articleIds: List<String>): List<ArticleStat>
 
-    fun delByArticleId(articleId: String)
+    fun removeById(articleId: String)
 
     fun viewCntIncr(articleId: String)
 

@@ -12,7 +12,7 @@ interface ArticleInfoRepo {
 
     fun exists(articleId: String): Boolean
 
-    fun delById(articleId: String)
+    fun removeById(articleId: String)
 
     fun update(o: ArticleInfo)
 

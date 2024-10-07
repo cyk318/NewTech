@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 /**
- * 管理员
+ * 管理员/用户
  * @author yikang.chen
  */
 @Validated

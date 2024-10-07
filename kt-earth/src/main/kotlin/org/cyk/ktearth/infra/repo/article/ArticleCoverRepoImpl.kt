@@ -29,7 +29,7 @@ class ArticleCoverRepoImpl(
         return "/$bucket/$fileName"
     }
 
-    override fun delByCover(cover: String) {
+    override fun removeByCover(cover: String) {
         val fileName = MinIOFileUtils.parsePathToFileName(cover)
         minioClient.removeObject(
             RemoveObjectArgs.builder()
