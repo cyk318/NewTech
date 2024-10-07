@@ -70,6 +70,15 @@ class AdminArticleInfoApi(
         return ApiResp.ok()
     }
 
+
+//    @PostMapping("/update")
+//    fun update(
+//        request: HttpServletRequest,
+//        @ModelAttribute @Valid dto: AdminArticlePubDto,
+//    ) {
+//
+//    }
+
 }
 
 data class AdminArticlePubDto(
