@@ -1,12 +1,14 @@
 package org.cyk.ktearth.application.user
 
 import org.cyk.ktearth.application.ApplicationHandler
+import org.cyk.ktearth.domain.oss.repo.OssFileRepo
 import org.cyk.ktearth.domain.user.domain.UserAvatarAudit
 import org.cyk.ktearth.domain.user.repo.UserAvatarAuditRepo
 import org.cyk.ktearth.domain.user.repo.UserAvatarRepo
 import org.cyk.ktearth.domain.user.repo.UserInfoRepo
 import org.cyk.ktearth.infra.exception.AppException
 import org.cyk.ktearth.infra.model.ApiStatus
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 
 data class AuditAvatarCmd(
@@ -18,8 +20,11 @@ data class AuditAvatarCmd(
 class AdminAuditAvatarHandler(
     private val userAvatarAuditRepo: UserAvatarAuditRepo,
     private val userInfoRepo: UserInfoRepo,
-    private val userAvatarRepo: UserAvatarRepo,
+    private val ossFileRepo: OssFileRepo,
 ): ApplicationHandler<AuditAvatarCmd, Unit> {
+
+    @Value("\${minio.bucket.user.avatar}")
+    private lateinit var bucket: String
 
     override fun handler(input: AuditAvatarCmd) {
         // 审核信息必须存在
@@ -29,7 +34,7 @@ class AdminAuditAvatarHandler(
         userAvatarAuditRepo.removeById(input.userId)
 
         if (input.ok) {
-            auditSuccess(input.userId, avatarAudit)
+            auditSuccess(avatarAudit)
         } else {
             auditFail(avatarAudit)
         }
@@ -40,10 +45,10 @@ class AdminAuditAvatarHandler(
     /**
      * 审核成功: 删除旧头像，修改为新头像
      */
-    private fun auditSuccess(userId: String, avatarAudit: UserAvatarAudit) {
-        val userinfo = userInfoRepo.queryById(userId)!!
+    private fun auditSuccess(avatarAudit: UserAvatarAudit) {
+        val userinfo = userInfoRepo.queryById(avatarAudit.userId)!!
 
-        userinfo.avatar?.let { userAvatarRepo.delByAvatar(it) }
+        userinfo.avatar?.let { ossFileRepo.remove(bucket, avatarAudit.userId, it) }
         userinfo.avatar = avatarAudit.avatar
 
         userInfoRepo.update(userinfo)
@@ -54,7 +59,7 @@ class AdminAuditAvatarHandler(
      */
     private fun auditFail(avatarAudit: UserAvatarAudit) {
         //删除新头像
-        userAvatarRepo.delByAvatar(avatarAudit.avatar)
+        ossFileRepo.remove(bucket, avatarAudit.userId, avatarAudit.avatar)
     }
 
 }

@@ -1,12 +1,13 @@
 package org.cyk.ktearth.application.user
 
 import org.cyk.ktearth.application.ApplicationHandler
+import org.cyk.ktearth.domain.oss.repo.OssFileRepo
 import org.cyk.ktearth.domain.user.domain.UserAvatarAudit
 import org.cyk.ktearth.domain.user.repo.UserAvatarAuditRepo
-import org.cyk.ktearth.domain.user.repo.UserAvatarRepo
 import org.cyk.ktearth.domain.user.repo.UserInfoRepo
 import org.cyk.ktearth.infra.exception.AppException
 import org.cyk.ktearth.infra.model.ApiStatus
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import org.springframework.web.multipart.MultipartFile
 
@@ -19,8 +20,11 @@ data class UpdateAvatarCmd (
 class UpdateAvatarHandler(
     private val userAvatarAuditRepo: UserAvatarAuditRepo,
     private val userInfoRepo: UserInfoRepo,
-    private val userAvatarRepo: UserAvatarRepo,
+    private val ossFileRepo: OssFileRepo,
 ): ApplicationHandler<UpdateAvatarCmd, Unit> {
+
+    @Value("\${minio.bucket.user.avatar}")
+    private lateinit var bucket: String
 
     override fun handler(input: UpdateAvatarCmd) {
         // 用户必须存在
@@ -32,7 +36,7 @@ class UpdateAvatarHandler(
             throw AppException(ApiStatus.INVALID_REQUEST, "该用户的头像还在审核中  userId: ${input.userId}")
         }
         // 保存图片的到 MinIO
-        val avatarPath = userAvatarRepo.save(input.avatar)
+        val avatarPath = ossFileRepo.save(bucket, input.userId, input.avatar)
         // 新增头像审核信息
         val o = UserAvatarAudit(
             userId = input.userId,
