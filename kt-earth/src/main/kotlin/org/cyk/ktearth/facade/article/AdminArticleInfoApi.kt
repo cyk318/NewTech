@@ -24,7 +24,6 @@ import org.springframework.web.multipart.MultipartFile
 class AdminArticleInfoApi(
     private val adminArticlePubHandler: AdminArticlePubHandler,
     private val adminArticleRemoveHandler: AdminArticleRemoveHandler,
-    private val adminUploadCoverHandler: AdminUploadCoverHandler,
     private val adminArticleUpdateHandler: AdminArticleUpdateHandler,
 ) {
 
