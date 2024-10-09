@@ -1,8 +1,10 @@
 package org.cyk.ktearth.infra.repo.article
 
+import org.cyk.ktearth.application.article.ArticlePageCmd
 import org.cyk.ktearth.domain.article.domain.ArticleInfo
 import org.cyk.ktearth.domain.article.domain.ArticleType
 import org.cyk.ktearth.domain.article.repo.ArticleInfoRepo
+import org.cyk.ktearth.infra.model.PageResp
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.mapping.Document
@@ -35,33 +37,29 @@ class ArticleInfoRepoImpl(
         mongoTemplate.save(obj).let { o.id = it.id!! }
     }
 
-//    override fun page(cmd: ArticlePageCmd): PageResp<ArticleInfo> {
-//        val c = Criteria()
-//        val q = Query.query(c)
-//        cmd.run {
-//            c.and("type").`is`(type)
-//            if (label.isNotEmpty()) {
-//                c.and("label").`in`(label)
-//            }
-//            if (!targetUserId.isNullOrBlank()) {
-//                c.and("author_id").`is`(targetUserId)
-//            }
-//            q.skip(start * 1L).limit(limit + 1)
-//        }
-//        val result = mongoTemplate.find(q, ArticleInfoDo::class.java)
-//            .map { map(it) }
-//            .toMutableList()
-//        val hasMore = result.size == cmd.limit + 1
-//        if (hasMore) {
-//            result.removeLast()
-//        }
-//        return PageResp.ok(
-//            hasMore,
-//            (cmd.start + cmd.limit).toLong(),
-//            result,
-//            null
-//        )
-//    }
+    override fun page(cmd: ArticlePageCmd): PageResp<ArticleInfo> {
+        val c = Criteria()
+        val q = Query.query(c)
+        cmd.run {
+            if (label.isNotEmpty()) {
+                c.and("label").`in`(label)
+            }
+            q.skip(start * 1L).limit(limit + 1)
+        }
+        val result = mongoTemplate.find(q, ArticleInfoDo::class.java)
+            .map { map(it) }
+            .toMutableList()
+        val hasMore = result.size == cmd.limit + 1
+        if (hasMore) {
+            result.removeLast()
+        }
+        return PageResp.ok(
+            hasMore,
+            (cmd.start + cmd.limit).toLong(),
+            result,
+            null
+        )
+    }
 
     override fun queryById(articleId: String): ArticleInfo? {
         val q = Query.query(Criteria.where("_id").`is`(articleId))
