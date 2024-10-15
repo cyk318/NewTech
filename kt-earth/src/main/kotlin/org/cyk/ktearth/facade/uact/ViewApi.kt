@@ -11,12 +11,18 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
+/**
+ * 用户行为
+ */
 @RestController
 @RequestMapping("/uact/view")
 class ViewApi(
     private val viewPostHandler: ViewPostHandler,
 ) {
 
+    /**
+     * 访问量
+     */
     @PostMapping
     fun post(
         request: HttpServletRequest,

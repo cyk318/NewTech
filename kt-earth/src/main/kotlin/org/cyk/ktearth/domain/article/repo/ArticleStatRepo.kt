@@ -6,6 +6,8 @@ interface ArticleStatRepo {
 
     fun save(o: ArticleStat)
 
+    fun removeById(articleId: String)
+
     fun queryByArticleIds(articleIds: List<String>): List<ArticleStat>
     fun queryByArticleId(articleId: String): ArticleStat?
 

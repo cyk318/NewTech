@@ -25,6 +25,15 @@ class BaseExceptionHandler {
         log.error(e.log)
         return ApiResp.no(e.status)
     }
+
+    /**
+     * 限流异常，不打印详细栈信息
+     */
+    @ExceptionHandler(FlowLimitException::class)
+    fun flowLimitException(e: FlowLimitException): ApiResp<*> {
+        log.warn(e.log)
+        return ApiResp.no(e.status)
+    }
  
     /**
      * 参数异常相关

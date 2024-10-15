@@ -1,6 +1,7 @@
 package org.cyk.ktearth.service
 
 import org.cyk.ktearth.infra.exception.AppException
+import org.cyk.ktearth.infra.exception.FlowLimitException
 import org.cyk.ktearth.infra.model.ApiStatus
 import org.slf4j.LoggerFactory
 import org.springframework.data.redis.core.StringRedisTemplate
@@ -37,6 +38,7 @@ class FlowLimitForRedisServiceImpl(
     private val redisTemplate: StringRedisTemplate,
 ): FlowLimitForRedisService {
 
+    //TODO 设计有问题，对不同文章也会有限制
     override fun entry(userId: String, type: LimitType) {
         val key = type.id + ":" + userId
         val beforeCnt = redisTemplate.opsForValue().get(key)
@@ -56,9 +58,9 @@ class FlowLimitForRedisServiceImpl(
         }
         //3) 超过 maxReqCnt, 检查如果是最大次数的 10 倍，那么就 warn 日志，最后返回 false
         if (afterCnt > type.maxReqCnt * 10) {
-            log.warn("目标被限流，且疑似有刷接口嫌疑  redisKey: $key ")
+            log.error("目标被限流，且疑似有刷接口嫌疑  redisKey: $key ")
         }
-        throw AppException(ApiStatus.REQUEST_TOO_FAST, "目标被限流  redisKey: $key")
+        throw FlowLimitException(log = "目标被限流  redisKey: $key")
     }
 
     companion object {

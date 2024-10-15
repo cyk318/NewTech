@@ -31,6 +31,11 @@ class ArticleStatRepoImpl(
         mongoTemplate.save(obj)
     }
 
+    override fun removeById(articleId: String) {
+        val c = Criteria.where("_id").`in`(articleId)
+        mongoTemplate.remove(Query.query(c), ArticleStatDo::class.java)
+    }
+
     override fun queryByArticleIds(articleIds: List<String>): List<ArticleStat> {
         val c = Criteria.where("_id").`in`(articleIds)
         return mongoTemplate.find(Query.query(c), ArticleStatDo::class.java).map { map(it) }
