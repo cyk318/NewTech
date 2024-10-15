@@ -7,15 +7,6 @@ interface ArticleStatRepo {
     fun save(o: ArticleStat)
 
     fun queryByArticleIds(articleIds: List<String>): List<ArticleStat>
-
-    fun removeById(articleId: String)
-
-    fun viewCntIncr(articleId: String)
-
-    fun likeCntIncr(articleId: String)
-
-    fun likeCntDecr(articleId: String)
-
-    fun commentCntIncr(articleId: String)
+    fun queryByArticleId(articleId: String): ArticleStat?
 
 }

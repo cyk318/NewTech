@@ -23,8 +23,8 @@ class ViewApi(
         @RequestBody dto: ViewPostDto
     ): ApiResp<Unit> {
         val cmd = ViewPostCmd (
-            targetId = dto.targetId,
             postId = UserTokenUtils.getUserIdByRequest(request),
+            targetId = dto.targetId,
         )
         viewPostHandler.handler(cmd)
         return ApiResp.ok()

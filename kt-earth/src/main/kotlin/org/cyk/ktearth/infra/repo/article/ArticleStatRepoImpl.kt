@@ -6,9 +6,8 @@ import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
-import org.springframework.data.mongodb.core.query.Update
 import org.springframework.stereotype.Repository
-import java.util.Date
+import java.util.*
 
 @Document("article_stat")
 data class ArticleStatDo (
@@ -37,50 +36,18 @@ class ArticleStatRepoImpl(
         return mongoTemplate.find(Query.query(c), ArticleStatDo::class.java).map { map(it) }
     }
 
-    override fun removeById(articleId: String) {
-        val q = Query.query(Criteria.where("_id").`is`(articleId))
-        mongoTemplate.remove(q, ArticleStatDo::class.java)
-    }
-
-    override fun viewCntIncr(articleId: String) {
-        val q = Query.query(Criteria.where("_id").`is`(articleId))
-        val u = Update()
-            .inc("view_cnt", 1)
-            .set("u_time", Date().time)
-        mongoTemplate.updateFirst(q, u, ArticleStatDo::class.java)
-    }
-
-    override fun likeCntIncr(articleId: String) {
-        val q = Query.query(Criteria.where("_id").`is`(articleId))
-        val u = Update()
-            .inc("like_cnt", 1)
-            .set("u_time", Date().time)
-        mongoTemplate.updateFirst(q, u, ArticleStatDo::class.java)
-    }
-
-    override fun likeCntDecr(articleId: String) {
-        val q = Query.query(Criteria.where("_id").`is`(articleId))
-        val u = Update()
-            .inc("like_cnt", -1)
-            .set("u_time", Date().time)
-        mongoTemplate.updateFirst(q, u, ArticleStatDo::class.java)
-    }
-
-    override fun commentCntIncr(articleId: String) {
-        val q = Query.query(Criteria.where("_id").`is`(articleId))
-        val u = Update()
-            .inc("comment_cnt", 1)
-            .set("u_time", Date().time)
-        mongoTemplate.updateFirst(q, u, ArticleStatDo::class.java)
+    override fun queryByArticleId(articleId: String): ArticleStat? {
+        val c = Criteria.where("_id").`in`(articleId)
+        return mongoTemplate.findOne(Query.query(c), ArticleStatDo::class.java)?.let { map(it) }
     }
 
     private fun map(obj: ArticleStatDo) = with(obj) {
-        ArticleStat(articleId, likeCnt,viewCnt, collectCnt, commentCnt, cTime, uTime)
+        ArticleStat(articleId, likeCnt,viewCnt, collectCnt, commentCnt, Date(cTime), Date(uTime))
     }
 
     private fun map(bo: ArticleStat) = with(bo) {
         ArticleStatDo(
-            articleId, likeCnt, viewCnt, collectCnt, commentCnt, cTime, uTime
+            articleId, likeCnt, viewCnt, collectCnt, commentCnt, cTime.time, uTime.time
         )
     }
 
