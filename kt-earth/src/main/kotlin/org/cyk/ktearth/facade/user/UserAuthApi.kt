@@ -7,7 +7,9 @@ import org.cyk.ktearth.application.user.LoginCmd
 import org.cyk.ktearth.application.user.LoginHandler
 import org.cyk.ktearth.domain.user.repo.UserInfoRepo
 import org.cyk.ktearth.domain.user.repo.UserTokenRepo
+import org.cyk.ktearth.infra.exception.AppException
 import org.cyk.ktearth.infra.model.ApiResp
+import org.cyk.ktearth.infra.model.ApiStatus
 import org.cyk.ktearth.infra.utils.UserTokenUtils
 import org.hibernate.validator.constraints.Length
 import org.slf4j.LoggerFactory
@@ -54,11 +56,14 @@ class UserAuthApi(
     fun logout(
         request: HttpServletRequest,
     ): ApiResp<Unit> {
-        // 从 redis 上删除该用户 token
         val userId = UserTokenUtils.getUserIdByRequest(request)
         val username = userInfoRepo.queryById(userId)!!.username
 
-        userTokenRepo.delByUserId(userId)
+        // 将 token 以当前时间设置为过期
+        val userToken = userTokenRepo.queryByUserId(userId)
+            ?: throw AppException(ApiStatus.NOT_LOGIN, "用户未登录")
+        userToken.makeExpireNow()
+        userTokenRepo.save(userToken)
 
         log.info("用户退出登录  userId: $userId, username: $username")
         return ApiResp.ok()

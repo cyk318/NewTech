@@ -16,12 +16,12 @@ object HttpHeaderUtils {
      */
     fun getUserIdByJwtForHard(r: HttpServletRequest): String {
         val jwt = r.getHeader(HttpHeaderConst.JWT_KEY)
-            ?: throw AppException(ApiStatus.JWT_EXPIRE, "jwt 过期！")
+            ?: throw AppException(ApiStatus.TOKEN_EXPIRE, "token 过期！")
         val userId = JwtUtils.getTokenInfo(jwt).getClaim(JwtConst.USER_ID)?.asString()
-            ?: throw AppException(ApiStatus.JWT_EXPIRE, "jwt 过期！")
+            ?: throw AppException(ApiStatus.TOKEN_EXPIRE, "token 过期！")
         val ok = JwtUtils.checkToken(jwt)
         if (!ok) {
-            throw AppException(ApiStatus.JWT_EXPIRE, "jwt 过期！ userId: $userId")
+            throw AppException(ApiStatus.TOKEN_EXPIRE, "token 过期！ userId: $userId")
         }
         return userId
     }

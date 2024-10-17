@@ -26,7 +26,7 @@ enum class ApiStatus(val code: Int, val msg: String) {
     NOT_REGISTERED(6, "not registered"),
  
     //token 过期
-    JWT_EXPIRE(7, "jwt expire"),
+    TOKEN_EXPIRE(7, "token expire"),
 
     //请求过快
     REQUEST_TOO_FAST(8, "request too fast"),

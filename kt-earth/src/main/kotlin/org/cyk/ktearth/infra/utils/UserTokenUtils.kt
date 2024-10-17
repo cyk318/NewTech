@@ -20,4 +20,8 @@ object UserTokenUtils {
             ?: throw AppException(ApiStatus.NOT_LOGIN, "用户没有登录")
     }
 
+    fun getTokenByRequest(request: HttpServletRequest): String {
+        return request.getHeader(HttpHeaderConst.TOKEN)
+    }
+
 }

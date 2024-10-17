@@ -1,13 +1,11 @@
 package org.cyk.ktearth.domain.user.repo
 
-import org.cyk.ktearth.infra.repo.user.SaveUserTokenCmd
+import org.cyk.ktearth.domain.user.domain.UserToken
 
 interface UserTokenRepo {
 
-    fun save(cmd: SaveUserTokenCmd)
+    fun save(obj: UserToken): UserToken
 
-    fun getTokenByUserId(userId: String): String?
-
-    fun delByUserId(userId: String)
+    fun queryByUserId(userId: String): UserToken?
 
 }

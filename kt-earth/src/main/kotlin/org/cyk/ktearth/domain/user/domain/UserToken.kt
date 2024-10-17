@@ -6,7 +6,7 @@ import java.time.LocalDateTime
 import java.util.Date
 
 data class UserToken (
-    val userId: String,
+    var userId: String,
     var token: String,
     var expireDate: Date,
     val cTime: Date = Date(),
@@ -26,6 +26,16 @@ data class UserToken (
 
     fun isExpire(): Boolean {
         return this.expireDate.before(Date())
+    }
+
+    /**
+     * 为退出登录提供
+     * 设置 token 过期时间为当前时间
+     */
+    fun makeExpireNow() {
+        val now = Date()
+        this.expireDate = now
+        this.uTime = now
     }
 
 }

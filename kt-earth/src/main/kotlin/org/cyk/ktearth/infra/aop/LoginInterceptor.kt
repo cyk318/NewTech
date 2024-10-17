@@ -31,8 +31,9 @@ class LoginInterceptor(
         val userId = UserTokenUtils.getUserIdByRequest(request)
         val user = userInfoRepo.queryById(userId)
             ?: throw AppException(ApiStatus.INVALID_REQUEST, "不存在的 userId: $userId")
+        val oldToken = UserTokenUtils.getTokenByRequest(request)
 
-        //管理员特殊处理
+        // 管理员特殊处理
         val requestURI = request.requestURI
         if (requestURI.startsWith("/admin")) {
             if (!user.isAdmin()) {
@@ -40,15 +41,12 @@ class LoginInterceptor(
             }
         }
 
-        val isValidToken = userTokenRepo.getTokenByUserId(userId) != null
-        if (isValidToken) {
+        // token 合法
+        val userToken = userTokenRepo.queryByUserId(userId)
+        if (userToken != null && !userToken.isExpire() && oldToken == userToken.token) {
             return true
         }
         throw AppException(ApiStatus.NOT_LOGIN, "用户未登录，已被拦截...  ip: ${IPUtils.getClientIp(request)}")
-    }
-
-    companion object {
-        private val log = LoggerFactory.getLogger(LoginInterceptor::class.java)
     }
 
 }

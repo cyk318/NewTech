@@ -2,7 +2,6 @@ package org.cyk.ktearth.infra.utils
 
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
-import com.auth0.jwt.exceptions.TokenExpiredException
 import com.auth0.jwt.interfaces.DecodedJWT
 import org.cyk.ktearth.infra.exception.AppException
 import org.cyk.ktearth.infra.model.ApiStatus
@@ -63,8 +62,8 @@ object JwtUtils {
     fun getTokenInfo(token: String): DecodedJWT {
         try {
             return JWT.require(Algorithm.HMAC256(SIGN)).build().verify(token)
-        } catch (e: TokenExpiredException) {
-            throw AppException(ApiStatus.JWT_EXPIRE, "jwt 过期！")
+        } catch (e: Exception) {
+            throw AppException(ApiStatus.TOKEN_EXPIRE, "无效 token: $token")
         }
     }
 }
