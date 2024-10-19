@@ -1,8 +1,6 @@
 package org.cyk.ktearth.service
 
-import org.cyk.ktearth.infra.exception.AppException
 import org.cyk.ktearth.infra.exception.FlowLimitException
-import org.cyk.ktearth.infra.model.ApiStatus
 import org.slf4j.LoggerFactory
 import org.springframework.data.redis.core.StringRedisTemplate
 import org.springframework.stereotype.Service
