@@ -20,6 +20,7 @@ class ViewPostHandler(
 ): ApplicationHandler<ViewPostCmd, Unit> {
 
     override fun handler(input: ViewPostCmd) {
+        checkValid(input)
         // 文章必须存在
         val article = articleInfoRepo.queryById(input.targetId)
             ?: throw AppException(ApiStatus.INVALID_REQUEST, "文章不存在  articleId: ${input.targetId}")
@@ -33,6 +34,15 @@ class ViewPostHandler(
             ?: throw AppException(ApiStatus.INVALID_PARAM, "文章对应的统计表呢   articleId: ${article.id}")
         stat.incrViewCnt()
         articleStatRepo.save(stat)
+    }
+
+    private fun checkValid(input: ViewPostCmd) {
+        if (input.postId.isBlank()) {
+            throw AppException(ApiStatus.INVALID_REQUEST, "postId 不能为空串")
+        }
+        if (input.targetId.isBlank()) {
+            throw AppException(ApiStatus.INVALID_REQUEST, "targetId 不能为空串")
+        }
     }
 
 }

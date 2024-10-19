@@ -1,6 +1,7 @@
 package org.cyk.ktearth.facade.uact
 
 import jakarta.servlet.http.HttpServletRequest
+import jakarta.validation.constraints.NotBlank
 import org.cyk.ktearth.application.uact.ViewPostCmd
 import org.cyk.ktearth.application.uact.ViewPostHandler
 import org.cyk.ktearth.infra.model.ApiResp
@@ -14,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 /**
- * 用户行为
+ * 用户行为/文章相关
  */
 @RestController
-@RequestMapping("/uact/view")
-class ViewApi(
+@RequestMapping("/uact/article")
+class UActArticleApi(
     private val viewPostHandler: ViewPostHandler,
     private val flowLimitService: FlowLimitService,
 ) {
@@ -26,8 +27,8 @@ class ViewApi(
     /**
      * 访问量
      */
-    @PostMapping
-    fun post(
+    @PostMapping("/view")
+    fun viewPost(
         request: HttpServletRequest,
         @RequestBody dto: ViewPostDto
     ): ApiResp<Unit> {
