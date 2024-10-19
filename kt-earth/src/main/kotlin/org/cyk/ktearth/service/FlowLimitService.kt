@@ -1,6 +1,5 @@
 package org.cyk.ktearth.service
 
-import org.cyk.ktearth.infra.exception.AppException
 import org.cyk.ktearth.infra.exception.FlowLimitException
 import org.slf4j.LoggerFactory
 import org.springframework.data.annotation.Id
@@ -123,14 +122,14 @@ class FlowLimitRepoImpl (
 
 }
 
-interface FlowLimitForRedisService {
+interface FlowLimitService {
     fun entry(flowLimit: FlowLimit)
 }
 
 @Service
-class FlowLimitForRedisServiceImpl(
+class FlowLimitServiceImpl(
     private val flowLimitRepo: FlowLimitRepo,
-): FlowLimitForRedisService {
+): FlowLimitService {
 
     override fun entry(flowLimit: FlowLimit) {
         val obj = flowLimitRepo.query(flowLimit.type.type, flowLimit.postId, flowLimit.targetId)
@@ -163,7 +162,7 @@ class FlowLimitForRedisServiceImpl(
     }
 
     companion object {
-        private val log = LoggerFactory.getLogger(FlowLimitForRedisServiceImpl::class.java)
+        private val log = LoggerFactory.getLogger(FlowLimitServiceImpl::class.java)
     }
 
 }
