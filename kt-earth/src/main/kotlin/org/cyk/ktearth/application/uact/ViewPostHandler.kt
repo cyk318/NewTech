@@ -6,8 +6,6 @@ import org.cyk.ktearth.domain.article.repo.ArticleInfoRepo
 import org.cyk.ktearth.domain.article.repo.ArticleStatRepo
 import org.cyk.ktearth.infra.exception.AppException
 import org.cyk.ktearth.infra.model.ApiStatus
-import org.cyk.ktearth.service.FlowLimitForRedisService
-import org.cyk.ktearth.service.LimitType
 import org.springframework.stereotype.Component
 
 data class ViewPostCmd (
@@ -17,14 +15,11 @@ data class ViewPostCmd (
 
 @Component
 class ViewPostHandler(
-    private val flowLimitForRedisService: FlowLimitForRedisService,
     private val articleInfoRepo: ArticleInfoRepo,
     private val articleStatRepo: ArticleStatRepo,
 ): ApplicationHandler<ViewPostCmd, Unit> {
 
     override fun handler(input: ViewPostCmd) {
-        // 限流
-        flowLimitForRedisService.entry(input.postId, LimitType.VIEW_POST)
         // 文章必须存在
         val article = articleInfoRepo.queryById(input.targetId)
             ?: throw AppException(ApiStatus.INVALID_REQUEST, "文章不存在  articleId: ${input.targetId}")
