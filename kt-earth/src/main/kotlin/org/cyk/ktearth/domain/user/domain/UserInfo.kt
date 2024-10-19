@@ -1,5 +1,7 @@
 package org.cyk.ktearth.domain.user.domain
 
+import java.util.Date
+
 
 data class UserInfo (
     var id: String? = null,
@@ -8,8 +10,8 @@ data class UserInfo (
     val phone: String? = null, //手机号(唯一)
     var avatar: String? = null, //头像
     val auth: UserAuth = UserAuth.NORMAL, //用户权限
-    val cTime: Long,
-    val uTime: Long,
+    val cTime: Date = Date(),
+    val uTime: Date = Date(),
 ) {
 
     fun isAdmin(): Boolean {
@@ -29,7 +31,7 @@ enum class UserAuth (
     ;
 
     companion object {
-        fun of(code: Int) = entries.firstOrNull { it.code == code }
+        fun codeOf(code: Int) = entries.firstOrNull { it.code == code }
     }
 
 }

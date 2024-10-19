@@ -12,3 +12,25 @@ data class CommentInfo (
     val cTime: LocalDateTime,
     val uTime: LocalDateTime,
 )
+
+enum class CommentParentIdType(
+    val id: String
+) {
+
+    TOP("0"), //顶级评论id = 0
+
+}
+
+enum class CommentStatus(
+    val code: Int
+) {
+    //正常
+    NORMAL(0),
+    //审核
+    AUDIT(1),
+    //封禁
+    BAN(2),
+
+
+}
+

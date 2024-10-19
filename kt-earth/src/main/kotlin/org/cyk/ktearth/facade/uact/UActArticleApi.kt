@@ -46,9 +46,18 @@ class UActArticleApi(
         return ApiResp.ok()
     }
 
+    @PostMapping("/like")
+    fun like() {
+
+    }
+
 }
 
-data class ViewPostDto (
+data class LikePostDto(
+    val targetId: String,
+)
+
+data class ViewPostDto(
     val targetId: String,
 )
 

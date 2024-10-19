@@ -1,11 +1,11 @@
 package org.cyk.ktearth.domain.uact.domain
 
-import java.time.LocalDateTime
+import java.util.Date
 
 data class CommentStat (
     val commentId: String,
     val likeCnt: Long,
     val commentCnt: Long,
-    val uTime: LocalDateTime,
-    val cTime: LocalDateTime,
+    val uTime: Date,
+    val cTime: Date,
 )

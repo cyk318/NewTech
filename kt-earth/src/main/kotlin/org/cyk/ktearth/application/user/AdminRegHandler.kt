@@ -31,8 +31,6 @@ class AdminRegHandler(
             UserInfo (
                 username = username,
                 password = randomPwd,
-                cTime = now,
-                uTime = now,
             )
         }
         userInfoRepo.save(obj)

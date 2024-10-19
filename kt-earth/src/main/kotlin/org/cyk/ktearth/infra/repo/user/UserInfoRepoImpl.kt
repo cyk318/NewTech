@@ -1,8 +1,10 @@
 package org.cyk.ktearth.infra.repo.user
 
+import org.cyk.ktearth.application.user.AdminPageInfoCmd
 import org.cyk.ktearth.domain.user.domain.UserAuth
 import org.cyk.ktearth.domain.user.domain.UserInfo
 import org.cyk.ktearth.domain.user.repo.UserInfoRepo
+import org.cyk.ktearth.infra.model.PageResp
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.mapping.Document
@@ -22,7 +24,7 @@ data class UserInfoDo (
     val password: String,
     val phone: String?, //手机号(唯一)
     val avatar: String?, //头像
-    val auth: UserAuth, //用户权限
+    val auth: Int, //用户权限
     val cTime: Long,
     val uTime: Long,
 )
@@ -70,6 +72,38 @@ class UserInfoRepoImpl(
         return mongoTemplate.find(q, UserInfoDo::class.java).map { map(it) }
     }
 
+    override fun page(cmd: AdminPageInfoCmd): PageResp<UserInfo> {
+        val c = Criteria().apply {
+            if (!cmd.id.isNullOrBlank()) {
+                and("_id").`is`(cmd.id)
+            }
+            if (!cmd.username.isNullOrBlank()) {
+                and("username").regex(cmd.username, "i") // i 忽略大小写
+            }
+            if (cmd.auth != null) {
+                and("auth").`is`(cmd.auth)
+            }
+        }
+        val q = Query.query(c)
+            .skip(cmd.start.toLong())
+            .limit(cmd.limit + 1)
+
+        val result = mongoTemplate.find(q, UserInfoDo::class.java)
+            .map { map(it) }
+            .toMutableList()
+        val hasMore = result.size > cmd.limit
+        if (hasMore) {
+            result.removeLast()
+        }
+        val total = mongoTemplate.count(q, UserInfoDo::class.java)
+        return PageResp.ok(
+            more = hasMore,
+            nextStart = (cmd.start + cmd.limit).toLong(),
+            objectList = result,
+            total = total,
+        )
+    }
+
     private fun map(o: UserInfoDo) = with(o) {
         UserInfo(
             id = id,
@@ -77,9 +111,9 @@ class UserInfoRepoImpl(
             password = password,
             phone = phone,
             avatar = avatar,
-            auth = auth,
-            cTime = cTime,
-            uTime = uTime,
+            auth = UserAuth.codeOf(auth)!!,
+            cTime = Date(cTime),
+            uTime = Date(uTime),
         )
     }
 
@@ -90,9 +124,9 @@ class UserInfoRepoImpl(
             password = password,
             phone = phone,
             avatar = avatar,
-            auth = auth,
-            cTime = cTime,
-            uTime = uTime,
+            auth = auth.code,
+            cTime = cTime.time,
+            uTime = uTime.time,
         )
     }
 
