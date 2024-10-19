@@ -46,7 +46,7 @@ data class FlowLimit (
     }
 
     fun isExpired(): Boolean {
-        return (type.unit.toMillis(type.timeout) + cTime.time) > Date().time
+        return (type.unit.toMillis(type.timeout) + cTime.time) < Date().time
     }
 
     fun isHighCnt(): Boolean {
@@ -149,6 +149,7 @@ class FlowLimitServiceImpl(
         obj.incrCnt()
         // 没有超过最大请求数，直接放行通过
         if (obj.cntOk()) {
+            flowLimitRepo.save(obj)
             return
         }
         // 超过最大请求数的 10 倍，记录错误日志
