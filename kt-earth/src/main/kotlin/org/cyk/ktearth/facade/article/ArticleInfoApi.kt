@@ -1,11 +1,13 @@
 package org.cyk.ktearth.facade.article
 
+import jakarta.servlet.http.HttpServletRequest
 import jakarta.validation.constraints.Min
 import org.cyk.ktearth.application.article.ArticlePageCmd
 import org.cyk.ktearth.application.article.ArticlePageHandler
 import org.cyk.ktearth.application.article.ArticlePageVo
 import org.cyk.ktearth.infra.model.ApiResp
 import org.cyk.ktearth.infra.model.PageResp
+import org.cyk.ktearth.infra.utils.UserTokenUtils
 import org.hibernate.validator.constraints.Range
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping
@@ -29,6 +31,7 @@ class ArticleInfoApi(
      */
     @GetMapping("/page")
     fun page(
+        request: HttpServletRequest,
         @RequestParam(required = false, defaultValue = "0") @Min(0) start: Int,
         @RequestParam(required = false, defaultValue = "24") @Range(min = 1, max = 24) limit: Int,
         @RequestParam(required = false) label: List<String>?,
@@ -36,7 +39,8 @@ class ArticleInfoApi(
         val cmd = ArticlePageCmd (
             start = start,
             limit = limit,
-            label = label ?: emptyList()
+            label = label ?: emptyList(),
+            curUserId = UserTokenUtils.getUserIdByRequest(request)
         )
         val pageVos = articlePageHandler.handler(cmd)
         return ApiResp.ok(pageVos)

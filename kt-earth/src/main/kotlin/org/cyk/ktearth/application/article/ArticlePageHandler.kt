@@ -3,9 +3,10 @@ package org.cyk.ktearth.application.article
 import org.cyk.ktearth.application.ApplicationHandler
 import org.cyk.ktearth.domain.article.domain.ArticleInfo
 import org.cyk.ktearth.domain.article.domain.ArticleStat
-import org.cyk.ktearth.domain.article.domain.ArticleType
 import org.cyk.ktearth.domain.article.repo.ArticleInfoRepo
 import org.cyk.ktearth.domain.article.repo.ArticleStatRepo
+import org.cyk.ktearth.domain.uact.domain.UserLikes
+import org.cyk.ktearth.domain.uact.repo.UserLikesRepo
 import org.cyk.ktearth.domain.user.domain.UserInfo
 import org.cyk.ktearth.domain.user.repo.UserInfoRepo
 import org.cyk.ktearth.infra.model.PageResp
@@ -15,6 +16,7 @@ data class ArticlePageCmd (
     val start: Int,
     val limit: Int,
     val label: List<String>,
+    val curUserId: String,
 )
 
 @Component
@@ -22,6 +24,7 @@ class ArticlePageHandler(
     private val userInfoRepo: UserInfoRepo,
     private val articleInfoRepo: ArticleInfoRepo,
     private val articleStatRepo: ArticleStatRepo,
+    private val userLikesRepo: UserLikesRepo,
 ): ApplicationHandler<ArticlePageCmd, PageResp<ArticlePageVo>> {
 
     override fun handler(cmd: ArticlePageCmd): PageResp<ArticlePageVo> {
@@ -35,19 +38,23 @@ class ArticlePageHandler(
         // 用户信息
         val userIds = articles.map { it.authorId }
         val userInfoMap = userInfoRepo.queryByIds(userIds).groupBy { it.id!! }.mapValues { it.value[0] }
+        //点赞信息
+        val userLikes = userLikesRepo.queryByUserId(cmd.curUserId)
+            ?: UserLikes(cmd.curUserId)
 
         return PageResp.ok(
             pageRes.hasMore,
             pageRes.nextStart,
-            map(articles, articleStatMap, userInfoMap),
+            buildVo(articles, articleStatMap, userInfoMap, userLikes),
             pageRes.total,
         )
     }
 
-    private fun map(
+    private fun buildVo(
         articles: List<ArticleInfo>,
         articleStatMap: Map<String, ArticleStat>,
         userInfoMap: Map<String, UserInfo>,
+        userLikes: UserLikes,
     ): List<ArticlePageVo> {
         return articles.map {
             ArticlePageVo(
@@ -64,7 +71,6 @@ class ArticlePageHandler(
                         id = id!!,
                         username = username,
                         avatar = avatar ?: "",
-
                     )
                 },
                 stat = with(articleStatMap[it.id]!!) {
@@ -74,7 +80,10 @@ class ArticlePageHandler(
                         collectCnt = collectCnt,
                         commentCnt = commentCnt,
                     )
-                }
+                },
+                uActStatus = ArticlePageVo.UActStatusVo(
+                    likeStatus = userLikes.hasLike(it.id!!)
+                )
             )
         }
     }
@@ -94,17 +103,21 @@ data class ArticlePageVo (
 
     val author: UserTinyVo,
     val stat: ArticleStatVo,
+    val uActStatus: UActStatusVo,
 ) {
-    data class UserTinyVo (
+    data class UserTinyVo(
         var id: String,
         val username: String,
         var avatar: String,
     )
-    data class ArticleStatVo (
+    data class ArticleStatVo(
         val likeCnt: Long,
         val viewCnt: Long,
         val collectCnt: Long,
         val commentCnt: Long,
+    )
+    data class UActStatusVo(
+        val likeStatus: Boolean,
     )
 }
 

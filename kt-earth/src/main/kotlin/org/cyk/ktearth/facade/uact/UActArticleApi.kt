@@ -2,6 +2,8 @@ package org.cyk.ktearth.facade.uact
 
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.validation.constraints.NotBlank
+import org.cyk.ktearth.application.uact.LikePostCmd
+import org.cyk.ktearth.application.uact.LikePostHandler
 import org.cyk.ktearth.application.uact.ViewPostCmd
 import org.cyk.ktearth.application.uact.ViewPostHandler
 import org.cyk.ktearth.infra.model.ApiResp
@@ -13,21 +15,24 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import kotlin.io.path.fileVisitor
+import kotlin.reflect.typeOf
 
 /**
- * 用户行为/文章相关
+ * 用户行为
  */
 @RestController
-@RequestMapping("/uact/article")
+@RequestMapping("/uact")
 class UActArticleApi(
     private val viewPostHandler: ViewPostHandler,
     private val flowLimitService: FlowLimitService,
+    private val likePostHandler: LikePostHandler,
 ) {
 
     /**
      * 访问量
      */
-    @PostMapping("/view")
+    @PostMapping("/article/view")
     fun viewPost(
         request: HttpServletRequest,
         @RequestBody dto: ViewPostDto
@@ -46,15 +51,28 @@ class UActArticleApi(
         return ApiResp.ok()
     }
 
+    /**
+     * 点赞
+     */
     @PostMapping("/like")
-    fun like() {
-
+    fun like(
+        request: HttpServletRequest,
+        @RequestBody dto: LikePostDto
+    ): ApiResp<Int> {
+        val cmd = LikePostCmd(
+            userId = UserTokenUtils.getUserIdByRequest(request),
+            targetId = dto.targetId,
+            type = dto.type
+        )
+        val likeStatus = likePostHandler.handler(cmd)
+        return ApiResp.ok(likeStatus)
     }
 
 }
 
 data class LikePostDto(
     val targetId: String,
+    val type: Int,
 )
 
 data class ViewPostDto(
