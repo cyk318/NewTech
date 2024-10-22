@@ -52,7 +52,7 @@ class UActArticleApi(
     }
 
     /**
-     * 点赞
+     * 点赞/取消点赞
      */
     @PostMapping("/like")
     fun like(

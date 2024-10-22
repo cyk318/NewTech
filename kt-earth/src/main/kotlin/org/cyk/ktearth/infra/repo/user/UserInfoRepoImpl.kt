@@ -23,7 +23,7 @@ data class UserInfoDo (
     val username: String, //花名(不能重复)
     val password: String,
     val phone: String?, //手机号(唯一)
-    val avatar: String?, //头像
+    val avatar: String, //头像
     val auth: Int, //用户权限
     val cTime: Long,
     val uTime: Long,
@@ -110,7 +110,7 @@ class UserInfoRepoImpl(
             username = username,
             password = password,
             phone = phone,
-            avatar = avatar,
+            avatar = avatar.ifBlank { "/user-avatar/default.png" },
             auth = UserAuth.codeOf(auth)!!,
             cTime = Date(cTime),
             uTime = Date(uTime),

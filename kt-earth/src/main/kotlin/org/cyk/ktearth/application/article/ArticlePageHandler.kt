@@ -70,7 +70,7 @@ class ArticlePageHandler(
                     ArticlePageVo.UserTinyVo(
                         id = id!!,
                         username = username,
-                        avatar = avatar ?: "",
+                        avatar = avatar,
                     )
                 },
                 stat = with(articleStatMap[it.id]!!) {
