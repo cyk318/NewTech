@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f4278c7e-612a-41ad-a478-6e4a1fdaa819" name="Changes" comment="用户信息查询">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/KtEarthApplication.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/application/ApplicationHandler.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/application/article/AdminArticlePubHandler.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/application/article/AdminArticleRemoveHandler.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/application/article/AdminArticleUpdateHandler.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/application/article/ArticlePageHandler.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/application/uact/LikePostHandler.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/application/uact/ViewPostHandler.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/application/user/AdminAuditAvatarHandler.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/application/user/AdminPageInfoHandler.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/application/user/AdminRegHandler.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/application/user/LoginHandler.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/application/user/QueryUserInfoHandler.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/application/user/UpdateAvatarHandler.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/domain/article/domain/ArticleInfo.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/domain/article/domain/ArticleStat.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/domain/article/repo/ArticleInfoRepo.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/domain/article/repo/ArticleStatRepo.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/domain/oss/repo/OssFileRepo.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/domain/uact/domain/Comment.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/domain/uact/domain/CommentStat.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/domain/uact/domain/UserCollectBox.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/domain/uact/domain/UserLikes.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/domain/uact/repo/UserLikesRepo.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/domain/user/domain/UserAvatarAudit.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/domain/user/domain/UserIPGeoInfo.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/domain/user/domain/UserInfo.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/domain/user/domain/UserToken.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/domain/user/repo/UserAddrRepo.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/domain/user/repo/UserAvatarAuditRepo.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/domain/user/repo/UserInfoRepo.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/domain/user/repo/UserTokenRepo.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/facade/article/AdminArticleInfoApi.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/facade/article/ArticleInfoApi.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/facade/uact/UActArticleApi.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/facade/user/AdminAuditApi.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/facade/user/AdminAuthApi.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/facade/user/AdminInfoApi.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/facade/user/UserAuthApi.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/facade/user/UserInfoApi.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/aop/LoginInterceptor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/config/MinioConfig.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/config/WebMvcConfig.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/exception/AppException.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/exception/BaseExceptionHandler.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/model/ApiResp.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/model/ApiStatus.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/model/JwtConst.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/model/PageResp.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/model/constants/HttpHeaderConst.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/model/constants/JwtConst.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/model/constants/RedisConst.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/repo/article/ArticleFavoriteRepoImpl.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/repo/article/ArticleInfoRepoImpl.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/repo/article/ArticleStatRepoImpl.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/repo/oss/OssFileRepoImpl.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/repo/uact/UserLikesRepoImpl.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/repo/user/UserAddrRepoImpl.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/repo/user/UserAvatarAuditRepoImpl.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/repo/user/UserInfoRepoImpl.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/repo/user/UserTokenRepoImpl.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/utils/DateUtils.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/utils/HttpHeaderUtils.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/utils/IPUtils.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/utils/JwtUtils.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/utils/MinIOFileUtils.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/utils/PasswordGenerator.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/infra/utils/UserTokenUtils.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/service/FlowLimitService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/cyk/ktearth/service/IPGeoInfoService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/org/cyk/ktearth/KtEarthApplicationTests.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/org/cyk/ktearth/infra/utils/PasswordGeneratorTest.kt" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package-info" />
+        <option value="Kotlin File" />
+        <option value="Kotlin Object" />
+        <option value="Kotlin Interface" />
+        <option value="Kotlin Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\Users\陈亦康\.m2\repository" />
+        <option name="userSettingsFile" value="C:\Users\陈亦康\.m2\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2muouB1Sv5SITeWGmhN1eARPhJy" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/codeRepositories/GitHub/piqiu-blog/backend/kt-earth",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "spring.configuration.checksum": "a1dcddd185f181250b2318f6f9ad693e",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\codeRepositories\GitHub\NewTech\kt-earth\src\main\kotlin\org\cyk\ktearth\service" />
+      <recent name="D:\codeRepositories\GitHub\NewTech\kt-earth\src\main\kotlin\org\cyk\ktearth\infra" />
+      <recent name="D:\codeRepositories\GitHub\NewTech\kt-earth\src\main\kotlin\org\cyk\ktearth\domain" />
+      <recent name="D:\codeRepositories\GitHub\NewTech\kt-earth\src\main\kotlin\org\cyk\ktearth\domain\user" />
+      <recent name="D:\codeRepositories\GitHub\NewTech\kt-earth\src\main\kotlin\org\cyk\ktearth\domain\blog" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\codeRepositories\GitHub\NewTech\kt-earth\src\main\kotlin\org\cyk\ktearth\domain\uact\domain" />
+      <recent name="D:\codeRepositories\GitHub\NewTech\kt-earth\src\main\kotlin\org\cyk\ktearth\facade\user" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="org.cyk.ktearth.domain.oss.domain" />
+      <recent name="org.cyk.ktearth.facade.user" />
+    </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="org.cyk.ktearth.infra.config" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="KtEarthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="kt-earth.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.cyk.ktearth.KtEarthApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f4278c7e-612a-41ad-a478-6e4a1fdaa819" name="Changes" comment="" />
+      <created>1710938688859</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710938688859</updated>
+      <workItem from="1727936044649" duration="16105000" />
+      <workItem from="1728011030919" duration="19421000" />
+      <workItem from="1728107064596" duration="14129000" />
+      <workItem from="1728279939462" duration="2684000" />
+      <workItem from="1728282670112" duration="23294000" />
+      <workItem from="1728396819435" duration="2453000" />
+      <workItem from="1728482698415" duration="4362000" />
+      <workItem from="1728655163796" duration="4572000" />
+      <workItem from="1728830790999" duration="1605000" />
+      <workItem from="1729000574596" duration="4827000" />
+      <workItem from="1729087772066" duration="3789000" />
+      <workItem from="1729174793934" duration="4941000" />
+      <workItem from="1729315171069" duration="2204000" />
+      <workItem from="1729319247376" duration="900000" />
+      <workItem from="1729331943191" duration="17342000" />
+      <workItem from="1729433205590" duration="4162000" />
+      <workItem from="1729517834632" duration="5380000" />
+      <workItem from="1729599094493" duration="8867000" />
+      <workItem from="1729686767449" duration="1219000" />
+    </task>
+    <task id="LOCAL-00001" summary="初始化">
+      <option name="closed" value="true" />
+      <created>1727936812949</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1727936812949</updated>
+    </task>
+    <task id="LOCAL-00002" summary="数据表定义">
+      <option name="closed" value="true" />
+      <created>1727938410557</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1727938410557</updated>
+    </task>
+    <task id="LOCAL-00003" summary="repo 恢复">
+      <option name="closed" value="true" />
+      <created>1727940272223</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1727940272223</updated>
+    </task>
+    <task id="LOCAL-00004" summary="基础设施完成">
+      <option name="closed" value="true" />
+      <created>1727940956077</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1727940956077</updated>
+    </task>
+    <task id="LOCAL-00005" summary="基础设施完成">
+      <option name="closed" value="true" />
+      <created>1727962676274</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1727962676274</updated>
+    </task>
+    <task id="LOCAL-00006" summary="管理员注册">
+      <option name="closed" value="true" />
+      <created>1728015011779</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1728015011779</updated>
+    </task>
+    <task id="LOCAL-00007" summary="修改密码生成范围">
+      <option name="closed" value="true" />
+      <created>1728016965117</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1728016965117</updated>
+    </task>
+    <task id="LOCAL-00008" summary="IP 记录工具">
+      <option name="closed" value="true" />
+      <created>1728018594712</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1728018594712</updated>
+    </task>
+    <task id="LOCAL-00009" summary="IP 记录工具 ok">
+      <option name="closed" value="true" />
+      <created>1728018754194</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1728018754194</updated>
+    </task>
+    <task id="LOCAL-00010" summary="登录，以及拦截 ok">
+      <option name="closed" value="true" />
+      <created>1728022912541</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1728022912541</updated>
+    </task>
+    <task id="LOCAL-00011" summary="登录拦截 ok">
+      <option name="closed" value="true" />
+      <created>1728023091566</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1728023091566</updated>
+    </task>
+    <task id="LOCAL-00012" summary="登录ok">
+      <option name="closed" value="true" />
+      <created>1728023747556</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1728023747556</updated>
+    </task>
+    <task id="LOCAL-00013" summary="日志更新处理">
+      <option name="closed" value="true" />
+      <created>1728026044208</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1728026044208</updated>
+    </task>
+    <task id="LOCAL-00014" summary="更新头像接口 dev">
+      <option name="closed" value="true" />
+      <created>1728119002714</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1728119002714</updated>
+    </task>
+    <task id="LOCAL-00015" summary="头像修改 和 审核(测试通过)">
+      <option name="closed" value="true" />
+      <created>1728125081490</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1728125081490</updated>
+    </task>
+    <task id="LOCAL-00016" summary="网关更改">
+      <option name="closed" value="true" />
+      <created>1728284266910</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1728284266910</updated>
+    </task>
+    <task id="LOCAL-00017" summary="文章发布 &amp; 删除(test ok)">
+      <option name="closed" value="true" />
+      <created>1728286996859</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1728286996859</updated>
+    </task>
+    <task id="LOCAL-00018" summary="文件 oss">
+      <option name="closed" value="true" />
+      <created>1728294837678</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1728294837678</updated>
+    </task>
+    <task id="LOCAL-00019" summary="文件 oss">
+      <option name="closed" value="true" />
+      <created>1728296675469</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1728296675469</updated>
+    </task>
+    <task id="LOCAL-00020" summary="文章更新">
+      <option name="closed" value="true" />
+      <created>1728306947342</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1728306947342</updated>
+    </task>
+    <task id="LOCAL-00021" summary="文章 更新 | 实时更新(完成)">
+      <option name="closed" value="true" />
+      <created>1728309546672</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1728309546672</updated>
+    </task>
+    <task id="LOCAL-00022" summary="更新">
+      <option name="closed" value="true" />
+      <created>1728397740192</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1728397740193</updated>
+    </task>
+    <task id="LOCAL-00023" summary="文章分页查询">
+      <option name="closed" value="true" />
+      <created>1728487097090</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1728487097090</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Limit init">
+      <option name="closed" value="true" />
+      <created>1728659763766</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1728659763766</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Limit 逻辑雏形">
+      <option name="closed" value="true" />
+      <created>1728832401407</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1728832401407</updated>
+    </task>
+    <task id="LOCAL-00026" summary="接口限流设计完成">
+      <option name="closed" value="true" />
+      <created>1729003118462</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1729003118462</updated>
+    </task>
+    <task id="LOCAL-00027" summary="访问量 + 1">
+      <option name="closed" value="true" />
+      <created>1729005106073</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1729005106073</updated>
+    </task>
+    <task id="LOCAL-00028" summary="todo limit bug">
+      <option name="closed" value="true" />
+      <created>1729006215651</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1729006215651</updated>
+    </task>
+    <task id="LOCAL-00029" summary="todo token 迁移至 mongo">
+      <option name="closed" value="true" />
+      <created>1729091527435</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1729091527435</updated>
+    </task>
+    <task id="LOCAL-00030" summary="token 迁移至 mongo(完成)">
+      <option name="closed" value="true" />
+      <created>1729178560169</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1729178560169</updated>
+    </task>
+    <task id="LOCAL-00031" summary="接口指定限流 -&gt; mongo">
+      <option name="closed" value="true" />
+      <created>1729341481855</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1729341481855</updated>
+    </task>
+    <task id="LOCAL-00032" summary="接口指定限流 -&gt; mongo">
+      <option name="closed" value="true" />
+      <created>1729341542448</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1729341542448</updated>
+    </task>
+    <task id="LOCAL-00033" summary="redis 下线">
+      <option name="closed" value="true" />
+      <created>1729342831579</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1729342831579</updated>
+    </task>
+    <task id="LOCAL-00034" summary="view 完成">
+      <option name="closed" value="true" />
+      <created>1729343799535</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1729343799535</updated>
+    </task>
+    <task id="LOCAL-00035" summary="用户信息查询完成">
+      <option name="closed" value="true" />
+      <created>1729354699818</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1729354699818</updated>
+    </task>
+    <task id="LOCAL-00036" summary="点赞领域模型完成">
+      <option name="closed" value="true" />
+      <created>1729437742508</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1729437742508</updated>
+    </task>
+    <task id="LOCAL-00037" summary="点赞领域模型完成">
+      <option name="closed" value="true" />
+      <created>1729437811094</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1729437811094</updated>
+    </task>
+    <task id="LOCAL-00038" summary="点赞完成">
+      <option name="closed" value="true" />
+      <created>1729523261041</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1729523261041</updated>
+    </task>
+    <task id="LOCAL-00039" summary="用户信息查询">
+      <option name="closed" value="true" />
+      <created>1729606186510</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1729606186510</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="登录ok" />
+    <MESSAGE value="日志更新处理" />
+    <MESSAGE value="更新头像接口 dev" />
+    <MESSAGE value="头像修改 和 审核(测试通过)" />
+    <MESSAGE value="网关更改" />
+    <MESSAGE value="文章发布 &amp; 删除(test ok)" />
+    <MESSAGE value="文件 oss" />
+    <MESSAGE value="文章更新" />
+    <MESSAGE value="文章 更新 | 实时更新(完成)" />
+    <MESSAGE value="更新" />
+    <MESSAGE value="文章分页查询" />
+    <MESSAGE value="Limit init" />
+    <MESSAGE value="Limit 逻辑雏形" />
+    <MESSAGE value="接口限流设计完成" />
+    <MESSAGE value="访问量 + 1" />
+    <MESSAGE value="todo limit bug" />
+    <MESSAGE value="todo token 迁移至 mongo" />
+    <MESSAGE value="token 迁移至 mongo(完成)" />
+    <MESSAGE value="接口指定限流 -&gt; mongo" />
+    <MESSAGE value="redis 下线" />
+    <MESSAGE value="view 完成" />
+    <MESSAGE value="用户信息查询完成" />
+    <MESSAGE value="点赞领域模型完成" />
+    <MESSAGE value="点赞完成" />
+    <MESSAGE value="用户信息查询" />
+    <option name="LAST_COMMIT_MESSAGE" value="用户信息查询" />
+  </component>
+</project>
